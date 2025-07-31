@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Involvements | Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .maintenance-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .maintenance-robot {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 2rem;
+            background-image: url('https://cdn-icons-png.flaticon.com/512/5219/5219070.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        .maintenance-text {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+        
+        .maintenance-subtext {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul style="display: flex; justify-content: center; align-items: center; width: 98%; position: relative; height: 40px; padding: 0 20px;">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="involvements.html">Involvements</a></li>
+                <li><a href="skill.html">Skills</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contacts.html">Contact</a></li>
+                <li style="position: absolute; right: 20px;">
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="maintenance-container">
+            <div class="maintenance-robot"></div>
+            <h2 class="maintenance-text">Under Maintenance</h2>
+            <p class="maintenance-subtext">This page is currently being worked on. Please check back later or contact me through my social links in the About page.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Amirul Faris Roslan. All rights reserved.</p>
+    </footer>
+    <script src="js/theme.js"></script>
+</body>
+</html>

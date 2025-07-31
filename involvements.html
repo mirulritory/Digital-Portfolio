@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Involvements | Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Collage Styles */
+        .collage-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        .collage {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 15px;
+            margin: 3rem 0;
+        }
+        
+        .main-photo {
+            grid-row: span 2;
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(58, 75, 31, 0.15);
+        }
+        
+        .side-photos {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .small-photo {
+            height: 242.5px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(58, 75, 31, 0.15);
+        }
+        
+        .collage-caption {
+            background: rgba(58, 75, 31, 0.9); /* Using your dark green */
+            color: var(--header-text); /* Using your light beige */
+            padding: 1.5rem;
+            border-radius: 8px;
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+        }
+        
+        .involvement-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .involvement-header h1 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .collage {
+                grid-template-columns: 1fr;
+            }
+            .main-photo {
+                grid-row: span 1;
+                height: 300px;
+            }
+            .small-photo {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul style="display: flex; justify-content: center; align-items: center; width: 98%; position: relative; height: 40px; padding: 0 20px;">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="involvements.html">Involvements</a></li>
+                <li><a href="skill.html">Skills</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contacts.html">Contact</a></li>
+                <li style="position: absolute; right: 20px;">
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="collage-container">
+        <div class="involvement-header">
+            <h1> Activities & Involvements </h1>
+            <p>A visual timeline of my key involvements and experiences.</p>
+        </div>
+
+        <div class="collage">
+            <div class="main-photo" style="background-image: url('images/iidex.jpeg')">
+                <div class="collage-caption">
+                    <h3>International Innovation and Design Expo 2025 iIDEX</h3>
+                    <p>Silver Award</p>
+                </div>
+            </div>
+            
+            <div class="small-photo" style="background-image: url('images/microbit.png')">
+                <div class="collage-caption">
+                    <h3>MICRO:BIT SECTION</h3>
+                    <p>Micro:bit workshop with sensors and competition for secondary school students.</p>
+                </div>
+            </div>
+            
+            <div class="small-photo" style="background-image: url('images/sulam.jpeg')">
+                <div class="collage-caption">
+                    <h3>STGEMS X SULAM IOT BOOTCAMP AND CHALLENGE</h3>
+                    <p> Mentored a group of primary school students from SK Keru </p>
+                </div>
+            </div>
+
+            <div class="small-photo" style="background-image: url('images/hackathon.JPG')">
+                <div class="collage-caption">
+                    <h3>D'FTMK-A-THON</h3>
+                    <p> CODE FOR INNOVATION Hackathon 2025</p>
+                </div>
+            </div>
+
+            <div class="small-photo" style="background-image: url('images/csr.jpeg')">
+                <div class="collage-caption">
+                    <h3>TECH EMPOWERMENT FOR COMMUNITY</h3>
+                    <p>CSR Programme with the school students of Felda Palong 2</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="collage-description">
+            <h2>Persatuan Mahasiswa/i, Anak Negeri Sembilan (PERMANIS)</h2>
+            <h3>Bureau of Welfare and Counseling</h3>
+            <ul>
+                <li>Provided emotional and welfare support to members by organizing counseling sessions, peer support initiatives, and mental health awareness programs.</li>
+                <li>Assisted students in resolving personal and academic challenges, while promoting a caring and inclusive environment within the association.</li>
+            </ul>
+        </div>
+
+        <div class="collage-description">
+            <h2>Software Engineering Club (SE Club)</h2>
+            <h3>Vice President</h3>
+            <ul>
+                <li>Assisted the President in leading club operations, including planning and executing technical workshops, coding competitions, and industry networking sessions.</li>
+                <li>Oversaw committee activities, delegated tasks, and ensured alignment with the club’s mission to enhance members’ skills in software development and engineering practices.</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Amirul Faris Roslan. All rights reserved.</p>
+    </footer>
+    <script src="js/theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Digital Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul style="display: flex; justify-content: center; align-items: center; width: 98%; position: relative; height: 40px; padding: 0 20px;">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="involvements.html">Involvements</a></li>
+                <li><a href="skill.html">Skills</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contacts.html">Contact</a></li>
+                <li style="position: absolute; right: 20px;">
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <div class="image-container">
+                <img src="images/profile.png" alt="Your Name" class="profile-image">
+            </div>
+            <div id="welcome">
+                <h1>Hi, I'm Amirul Faris Roslan.</h1>
+                <p>Software Development Student</p>
+                <p>I'm a final-year student at Universiti Teknikal Malaysia Melaka (UTeM), passionate about building clean and user-friendly digital experiences. My main focus has been on frontend development, where I enjoy turning ideas into interactive and responsive interfaces. I'm always eager to learn new technologies, explore new challenges, and grow as a developer.</p>
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem;">
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/amirul-faris-roslan" class="social-link" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/mirulritory" class="social-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+                <a href="about.html" class="about-button">More about me !</a>
+            </div>
+            </div>
+        </section>
+
+        <section id="projects-preview">
+            <h2>Featured Projects</h2>
+            <div class="project-cards">
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('images/website.png');">
+                    </div>
+                    <div class="project-name">Website Checker</div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/helplink.png" alt="Mobile App Design">
+                    </div>
+                    <div class="project-name">HelpLink</div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/bujang.png" alt="Data Dashboard">
+                    </div>
+                    <div class="project-name">Bujang Western</div>
+                </div>
+                <a href="projects.html" class="project-card" style="text-decoration: none; color: inherit;">
+                    <div class="project-image" style="background: var(--card-bg); display: flex; justify-content: center; align-items: center; height: 180px;">
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-angle-double-right" style="font-size: 6rem; color: var(--text-color);"></i>
+                            <span style="font-size: 1rem; color: var(--text-color);"></span>
+                        </div>
+                    </div>
+                    <div class="project-name">View All Projects</div>
+                </a>
+            </div>
+        </section>
+
+        <section id="involvements-preview">
+            <h2>My Involvements</h2>
+            <div class="involvement-items">
+                <div class="involvement-card">
+                    <h3>Persatuan Mahasiswa/i, Anak Negeri Sembilan (PERMANIS)</h3>
+                    <p>Bureau of Welfare and Counseling | 2023 - 2025</p>
+                </div>
+                <div class="involvement-card">
+                    <h3>International Innovation and Design Expo 2025 iIDEX</h3>
+                    <p>Earning a Silver Award in a competitive national-level setting focused on real-world problem-solving</p>
+                </div>
+            </div>
+            <a href="involvements.html" class="view-all-button" style="display: block; text-align: center; padding: 12px; background: var(--button-bg); color: var(--button-text); border-radius: 8px; margin-top: 1rem; text-decoration: none; font-weight: bold; transition: all 0.3s ease; width: 100%; max-width: 1175px; margin-left: auto; margin-right: auto;">
+                See All Involvements
+            </a>
+        </section>
+
+        <section id="skills-preview">
+            <h2>Key Skills</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <img src="images/c++.png" alt="DevOps" class="skill-image">
+                </div> 
+                <div class="skill-card">
+                    <img src="images/html.png" alt="DevOps" class="skill-image">
+                </div> 
+                <div class="skill-card">
+                    <img src="images/css.png" alt="DevOps" class="skill-image">
+                </div> 
+                <div class="skill-card">
+                    <img src="images/flutter.png" alt="DevOps" class="skill-image">
+                </div> 
+                <div class="skill-card">
+                    <img src="images/postgre.png" alt="DevOps" class="skill-image">
+                </div> 
+                <div class="skill-card">
+                    <img src="images/js.png" alt="DevOps" class="skill-image">
+                </div> 
+                <div class="skill-card">
+                    <img src="images/java.png" alt="DevOps" class="skill-image">
+                </div> 
+                <a href="skill.html" class="skill-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: inherit;">
+                    <i class="fas fa-angle-double-right" style="font-size: 2rem; color: var(--text-color); margin-bottom: 0.5rem;"></i>
+                  </a>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Amirul Faris Roslan. All rights reserved.</p>
+    </footer>
+    <script src="js/theme.js"></script>
+    <script src="js/typing.js"></script>
+</body>
+</html>
