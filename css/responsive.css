@@ -889,6 +889,52 @@ footer {
   .orb-12 { top: 180px; left: calc(32% - 45px); }
 }
 
+/* Maintenance Page Styles */
+.maintenance-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  text-align: center;
+  padding: 2rem;
+}
+
+.maintenance-robot {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.maintenance-robot::before {
+  content: "✕";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background: var(--card-bg);
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  color: var(--text-color);
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.maintenance-text {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.maintenance-subtext {
+  font-size: 1rem;
+  max-width: 500px;
+  line-height: 1.6;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
 /* Desktop Styles (1024px and up) */
 @media (min-width: 1024px) {
   .nav-container {
