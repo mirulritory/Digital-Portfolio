@@ -371,6 +371,25 @@ footer {
   transform: translateY(-2px);
 }
 
+/* Make view-all-button match project-card width */
+@media (min-width: 768px) {
+  .view-all-button {
+    width: calc(50% - 0.5rem);
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .view-all-button {
+    width: calc(250px - 1rem);
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 /* Skills Preview */
 .skills-container {
   display: flex;
