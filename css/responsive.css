@@ -371,26 +371,36 @@ footer {
   transform: translateY(-2px);
 }
 
-/* Make view-all-button match project-card width */
-.view-all-button {
-  box-sizing: border-box;
-}
-
+/* Make view-all-button behave like a project card */
 @media (min-width: 768px) {
+  #involvements-preview {
+    margin-bottom: 3rem;
+  }
+  
+  .involvement-items {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
   .view-all-button {
-    width: calc(50% - 0.75rem);
+    width: 100%;
     max-width: none;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 0;
+    grid-column: 1;
   }
 }
 
 @media (min-width: 1024px) {
+  .involvement-items {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
   .view-all-button {
-    width: 250px;
+    width: 100%;
     max-width: none;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 0;
+    grid-column: auto;
   }
 }
 
