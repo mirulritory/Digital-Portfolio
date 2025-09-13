@@ -53,6 +53,12 @@ header {
   padding: 0 20px;
 }
 
+@media (max-width: 1023px) {
+  .nav-container {
+    justify-content: space-between;
+  }
+}
+
 .nav-menu {
   display: none;
   flex-direction: column;
@@ -885,6 +891,11 @@ footer {
 
 /* Desktop Styles (1024px and up) */
 @media (min-width: 1024px) {
+  .nav-container {
+    justify-content: center;
+    gap: 2rem;
+  }
+  
   nav ul {
     display: flex;
     justify-content: center;
