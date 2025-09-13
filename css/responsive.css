@@ -328,10 +328,10 @@ footer {
 }
 
 .involvement-items {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0;
 }
 
 .involvement-card {
@@ -339,6 +339,8 @@ footer {
   padding: 1rem;
   border-radius: 8px;
   transition: transform 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .involvement-card:hover {
@@ -366,11 +368,16 @@ footer {
   background: var(--button-bg);
   color: var(--button-text);
   border-radius: 8px;
+  margin-top: 1rem;
   text-decoration: none;
   font-weight: bold;
   transition: all 0.3s ease;
+  width: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.9rem;
   box-sizing: border-box;
-  align-self: stretch;
 }
 
 .view-all-button:hover {
@@ -378,16 +385,34 @@ footer {
   transform: translateY(-2px);
 }
 
+/* Make view-all-button match project-card width */
 @media (min-width: 768px) {
-  .involvement-items {
-    grid-template-columns: repeat(2, 1fr);
+  .view-all-button {
+    width: calc(50% - 0.75rem);
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .involvement-card {
+    width: calc(50% - 0.75rem);
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
 @media (min-width: 1024px) {
-  .involvement-items {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 2rem;
+  .view-all-button {
+    width: 250px;
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .involvement-card {
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
