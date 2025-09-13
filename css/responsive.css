@@ -372,9 +372,13 @@ footer {
 }
 
 /* Make view-all-button match project-card width */
+.view-all-button {
+  box-sizing: border-box;
+}
+
 @media (min-width: 768px) {
   .view-all-button {
-    width: calc(50% - 0.5rem);
+    width: calc(50% - 0.75rem);
     max-width: none;
     margin-left: 0;
     margin-right: 0;
@@ -383,7 +387,7 @@ footer {
 
 @media (min-width: 1024px) {
   .view-all-button {
-    width: calc(250px - 1rem);
+    width: 250px;
     max-width: none;
     margin-left: 0;
     margin-right: 0;
