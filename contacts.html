@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | Portfolio</title>
+    <script>
+      (function(){
+        var base = './';
+        if (window.location.protocol === 'https:' || window.location.protocol === 'http:') {
+          var path = window.location.pathname.replace(/\/$/, '');
+          var segments = path.split('/').filter(Boolean);
+          if (segments.length > 0) { base = '/' + segments[0] + '/'; }
+          else { base = '/'; }
+        }
+        document.write('<base href="' + base + '">');
+      })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
