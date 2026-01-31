@@ -3,142 +3,342 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Digital Portfolio</title>
+    <title>Amirul Faris Roslan - Digital Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="nav-container">
-                <button class="nav-toggle" id="nav-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <ul class="nav-menu" id="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="involvements.html">Involvements</a></li>
-                    <li><a href="skill.html">Skills</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contacts.html">Contact</a></li>
-                </ul>
-                <div class="theme-toggle-container">
-                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <!-- Mobile Header -->
 
     <main>
-        <section id="about">
-            <div class="image-container">
-                <img src="images/profile.png" alt="Your Name" class="profile-image">
-            </div>
-            <div id="welcome">
-                <h1>Hi, I'm Amirul Faris Roslan.</h1>
-                <p>Software Development Student</p>
-                <p>I'm a final-year student at Universiti Teknikal Malaysia Melaka (UTeM), passionate about building clean and user-friendly digital experiences. My main focus has been on frontend development, where I enjoy turning ideas into interactive and responsive interfaces. I'm always eager to learn new technologies, explore new challenges, and grow as a developer.</p>
-            <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem;">
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/amirul-faris-roslan" class="social-link" target="_blank">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://github.com/mirulritory" class="social-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <span class="section-watermark-portfolio">PORTFOLIO</span>
+            
+            <div class="zoom-container">
+                <div class="hero-content-wrapper">
+                    <img src="images/amirul.png" alt="Amirul Faris Roslan" class="hero-avatar">
+                    
+                    <div class="hero-info-box">
+                        <h1>amirul faris bin roslan</h1>
+                        <p class="subtitle">{software development student}</p>
+                        <p class="bio">Final-year student at Universiti Teknikal Malaysia Melaka (UTeM) who loves building clean, user-friendly digital experiences. I focus on frontend development and enjoy turning ideas into responsive, interactive interfaces. Always curious, always learning, constantly exploring new technologies and looking for new challenges to grow as a developer.</p>
+                    </div>
                 </div>
-                <a href="about.html" class="about-button">More about me !</a>
-            </div>
             </div>
         </section>
 
-        <section id="projects-preview">
-            <h2>Featured Projects</h2>
-            <div class="project-cards">
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/website.png');">
-                    </div>
-                    <div class="project-name">Website Checker</div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/helplink.png" alt="Mobile App Design">
-                    </div>
-                    <div class="project-name">HelpLink</div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/bujang.png" alt="Data Dashboard">
-                    </div>
-                    <div class="project-name">Bujang Western</div>
-                </div>
-                <a href="projects.html" class="project-card" style="text-decoration: none; color: inherit;">
-                    <div class="project-image" style="background: var(--card-bg); display: flex; justify-content: center; align-items: center; height: 180px;">
-                        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-                            <i class="fas fa-angle-double-right" style="font-size: 6rem; color: var(--text-color);"></i>
-                            <span style="font-size: 1rem; color: var(--text-color);"></span>
+        <!-- Projects Section -->
+        <section class="projects-section">
+            <span class="section-watermark-projects">&lt;/&gt; PROJECTS</span>
+            
+            <div class="zoom-container">
+                <div class="projects-wrapper">
+                    <div class="projects-grid">
+                        <!-- Project 1 -->
+                        <div class="project-card-new" onclick="openModal('project1')">
+                            <div class="project-card-image">
+                                <img src="images/website.png" alt="Website Checker">
+                            </div>
+                            <div class="project-card-title">Website Checker</div>
+                        </div>
+                        
+                        <!-- Project 2 -->
+                        <div class="project-card-new" onclick="openModal('project2')">
+                            <div class="project-card-image">
+                                <img src="images/helplink.png" alt="HelpLink">
+                            </div>
+                            <div class="project-card-title">HelpLink</div>
+                        </div>
+                        
+                        <!-- Project 3 -->
+                        <div class="project-card-new" onclick="openModal('project3')">
+                            <div class="project-card-image">
+                                <img src="images/bujang.png" alt="Bujang Western">
+                            </div>
+                            <div class="project-card-title">Bujang Western</div>
                         </div>
                     </div>
-                    <div class="project-name">View All Projects</div>
-                </a>
+                </div>
             </div>
         </section>
 
-        <section id="involvements-preview">
-            <h2>My Involvements</h2>
-            <div class="involvement-items">
-                <div class="involvement-card">
-                    <h3>Persatuan Mahasiswa/i, Anak Negeri Sembilan (PERMANIS)</h3>
-                    <p>Bureau of Welfare and Counseling | 2023 - 2025</p>
-                </div>
-                <div class="involvement-card">
-                    <h3>International Innovation and Design Expo 2025 iIDEX</h3>
-                    <p>Earning a Silver Award in a competitive national-level setting focused on real-world problem-solving</p>
+        <!-- Involvements Section -->
+        <section class="involvements-section">
+            <span class="section-watermark-involvements">INVOLVEMENTS</span>
+            
+            <div class="zoom-container">
+                <div class="involvements-wrapper">
+                    <div class="involvements-grid">
+                        <!-- Involvement 1 -->
+                        <div class="involvement-card-new">
+                            <div class="involvement-card-inner">
+                                <div class="involvement-card-front">
+                                    <div class="involvement-card-image" style="background-image: url('images/iidex.jpeg');"></div>
+                                </div>
+                                <div class="involvement-card-back">
+                                    <h3 class="involvement-card-title-front">International Innovation and Design Expo 2025 iIDEX</h3>
+                                    <p class="involvement-card-subtitle-front">Silver Award</p>
+                                    <p class="involvement-card-description">Participated in the prestigious iIDEX 2025 competition and was awarded the Silver Medal for innovative project presentation.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Involvement 2 -->
+                        <div class="involvement-card-new">
+                            <div class="involvement-card-inner">
+                                <div class="involvement-card-front">
+                                    <div class="involvement-card-image" style="background-image: url('images/microbit.png');"></div>
+                                </div>
+                                <div class="involvement-card-back">
+                                    <h3 class="involvement-card-title-front">Micro:bit Workshop</h3>
+                                    <p class="involvement-card-subtitle-front">Secondary School Program</p>
+                                    <p class="involvement-card-description">Micro:bit workshop with sensors and competition for secondary school students to introduce coding and electronics.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Involvement 3 -->
+                        <div class="involvement-card-new">
+                            <div class="involvement-card-inner">
+                                <div class="involvement-card-front">
+                                    <div class="involvement-card-image" style="background-image: url('images/sulam.jpeg');"></div>
+                                </div>
+                                <div class="involvement-card-back">
+                                    <h3 class="involvement-card-title-front">SULAM IoT Bootcamp</h3>
+                                    <p class="involvement-card-subtitle-front">Primary School Mentoring</p>
+                                    <p class="involvement-card-description">Mentored a group of primary school students from SK Keru in STGEMS X SULAM IoT Bootcamp and Challenge.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Involvement 4 -->
+                        <div class="involvement-card-new">
+                            <div class="involvement-card-inner">
+                                <div class="involvement-card-front">
+                                    <div class="involvement-card-image" style="background-image: url('images/hackathon.JPG');"></div>
+                                </div>
+                                <div class="involvement-card-back">
+                                    <h3 class="involvement-card-title-front">D'FTMK-A-THON</h3>
+                                    <p class="involvement-card-subtitle-front">Hackathon 2025</p>
+                                    <p class="involvement-card-description">CODE FOR INNOVATION Hackathon 2025 - Developed innovative solutions in a competitive coding environment.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Involvement 5 -->
+                        <div class="involvement-card-new">
+                            <div class="involvement-card-inner">
+                                <div class="involvement-card-front">
+                                    <div class="involvement-card-image" style="background-image: url('images/csr.jpeg');"></div>
+                                </div>
+                                <div class="involvement-card-back">
+                                    <h3 class="involvement-card-title-front">Tech Empowerment CSR</h3>
+                                    <p class="involvement-card-subtitle-front">Community Program</p>
+                                    <p class="involvement-card-description">CSR Programme with the school students of Felda Palong 2, providing technology education and skills development.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Involvement 6 -->
+                        <div class="involvement-card-new">
+                            <div class="involvement-card-inner">
+                                <div class="involvement-card-front">
+                                    <div class="involvement-card-image" style="background-image: url('images/grab.png');"></div>
+                                </div>
+                                <div class="involvement-card-back">
+                                    <h3 class="involvement-card-title-front">GIFT Programme</h3>
+                                    <p class="involvement-card-subtitle-front">Data Analyst Scenario</p>
+                                    <p class="involvement-card-description">Participated in the Grab GIFT Programme, gaining hands-on experience in data analysis and business intelligence.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <a href="involvements.html" class="view-all-button">
-                See All Involvements
+            <a href="involvements.html" class="see-more-btn">
+                <span>see more</span>
+                <i class="fas fa-arrow-right"></i>
             </a>
         </section>
-
-        <section id="skills-preview">
-            <h2>Key Skills</h2>
-            <div class="skills-container">
-                <div class="skill-card">
-                    <img src="images/c++.png" alt="DevOps" class="skill-image">
-                </div> 
-                <div class="skill-card">
-                    <img src="images/html.png" alt="DevOps" class="skill-image">
-                </div> 
-                <div class="skill-card">
-                    <img src="images/css.png" alt="DevOps" class="skill-image">
-                </div> 
-                <div class="skill-card">
-                    <img src="images/flutter.png" alt="DevOps" class="skill-image">
-                </div> 
-                <div class="skill-card">
-                    <img src="images/postgre.png" alt="DevOps" class="skill-image">
-                </div> 
-                <div class="skill-card">
-                    <img src="images/js.png" alt="DevOps" class="skill-image">
-                </div> 
-                <div class="skill-card">
-                    <img src="images/java.png" alt="DevOps" class="skill-image">
-                </div> 
-                <a href="skill.html" class="skill-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: inherit;">
-                    <i class="fas fa-angle-double-right" style="font-size: 2rem; color: var(--text-color); margin-bottom: 0.5rem;"></i>
-                  </a>
-        </section>
     </main>
+
+    <!-- Right Sidebar Navigation -->
+    <nav class="right-sidebar">
+        <a href="about.html" class="sidebar-link" title="About Me">
+            <i class="fas fa-user"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/amirul-faris-roslan" class="sidebar-link" target="_blank" title="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://github.com/mirulritory" class="sidebar-link" target="_blank" title="GitHub">
+            <i class="fab fa-github"></i>
+        </a>
+        <a href="contacts.html" class="sidebar-link" title="Contact">
+            <i class="fas fa-envelope"></i>
+        </a>
+    </nav>
 
     <footer>
         <p>© 2025 Amirul Faris Roslan. All rights reserved.</p>
     </footer>
-    <script src="js/theme.js"></script>
-    <script src="js/mobile-nav.js"></script>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal-backdrop">
+        <div class="modal-container">
+            <button class="modal-close-btn" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-image-placeholder">
+                <img id="modalImage" src="" alt="Project">
+            </div>
+            <div class="modal-content-area">
+                <h3 id="modalTitle" class="modal-title"></h3>
+                <p id="modalDescription" class="modal-description"></p>
+                <div id="modalButtons" class="modal-buttons"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Modal Script -->
+    <script>
+        const projects = {
+            project1: {
+                title: "Website Checker",
+                description: "The Real-Time Website Health Monitoring System is a full-stack JavaScript platform with WebSocket and Azure PostgreSQL, enabling users to monitor multiple URLs, track live status, and analyze performance trends through interactive graphs for improved reliability and insights.",
+                image: "images/website.png",
+                buttons: [
+                    { name: "github", url: "https://github.com/mirulritory/SitePulse", icon: "fab fa-github" },
+                    { name: "demo video", url: "https://youtu.be/XFMPcapIQA0?si=IWUi0KMzmW5Ji9WE", icon: "fas fa-play-circle" }
+                ]
+            },
+            project2: {
+                title: "HelpLink",
+                description: "HelpLink is a disaster response mobile app featuring real-time reporting, shelter navigation, Google Sign-In, PayPal integration, and an AI Chat Assistant, leveraging AWS backend services to enhance safety, support, donations, and aid coordination during emergencies.",
+                image: "images/helplink.png",
+                buttons: [
+                    { name: "github", url: "https://github.com/mirulritory/Workshop-2.git", icon: "fab fa-github" },
+                    { name: "demo video", url: "https://youtu.be/P3IYRnJ4HSw?si=AR7YekPzDM6s5YB4", icon: "fas fa-play-circle" }
+                ]
+            },
+            project3: {
+                title: "Bujang Western",
+                description: "A dual-mode food ordering system offering walk-in via table QR and delivery via website, integrated with a kitchen staff module for order tracking, cancellation, and history management, while automatically sending digital receipts to customers through Gmail.",
+                image: "images/bujang.png",
+                buttons: [
+                    { name: "github", url: "https://github.com/FarisGhfr/food_ordering_system.git", icon: "fab fa-github" },
+                    { name: "documentation", url: "https://docs.google.com/document/d/1Uce0Yk9zK_oRKwoQDTWZmWiKwSk0yaZT/edit?usp=sharing&ouid=116657461074606327917&rtpof=true&sd=true", icon: "fas fa-file-alt" }
+                ]
+            }
+        };
+
+        function openModal(projectId) {
+            const project = projects[projectId];
+            const modal = document.getElementById('projectModal');
+            
+            document.getElementById('modalImage').src = project.image;
+            document.getElementById('modalTitle').textContent = project.title;
+            document.getElementById('modalDescription').textContent = project.description;
+            
+            const buttonsContainer = document.getElementById('modalButtons');
+            buttonsContainer.innerHTML = '';
+            
+            project.buttons.forEach(btn => {
+                const btnElement = document.createElement('a');
+                btnElement.href = btn.url;
+                btnElement.target = '_blank';
+                btnElement.className = 'modal-btn';
+                btnElement.innerHTML = `<i class="${btn.icon}"></i><span>${btn.name}</span>`;
+                buttonsContainer.appendChild(btnElement);
+            });
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Scroll-triggered fade-in animation for project cards
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('projects-section')) {
+                        const projectCards = entry.target.querySelectorAll('.project-card-new');
+                        projectCards.forEach((card, index) => {
+                            setTimeout(() => {
+                                card.classList.add('visible');
+                            }, index * 150);
+                        });
+                        const projectsWatermark = entry.target.querySelector('.section-watermark-projects');
+                        if (projectsWatermark) {
+                            setTimeout(() => {
+                                projectsWatermark.classList.add('visible');
+                            }, 300);
+                        }
+                    } else if (entry.target.classList.contains('involvements-section')) {
+                        const involvementCards = entry.target.querySelectorAll('.involvement-card-new');
+                        involvementCards.forEach((card, index) => {
+                            setTimeout(() => {
+                                card.classList.add('visible');
+                            }, index * 150);
+                        });
+                        const involvementsWatermark = entry.target.querySelector('.section-watermark-involvements');
+                        if (involvementsWatermark) {
+                            setTimeout(() => {
+                                involvementsWatermark.classList.add('visible');
+                            }, 300);
+                        }
+                    } else if (entry.target.classList.contains('skills-section')) {
+                        const skillItems = entry.target.querySelectorAll('.skill-item');
+                        skillItems.forEach((item, index) => {
+                            setTimeout(() => {
+                                item.classList.add('visible');
+                            }, index * 100);
+                        });
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const projectsSection = document.querySelector('.projects-section');
+        if (projectsSection) {
+            observer.observe(projectsSection);
+        }
+
+        const involvementsSection = document.querySelector('.involvements-section');
+        if (involvementsSection) {
+            observer.observe(involvementsSection);
+        }
+
+        const skillsSection = document.querySelector('.skills-section');
+        if (skillsSection) {
+            observer.observe(skillsSection);
+        }
+    </script>
     <script src="js/typing.js"></script>
 </body>
 </html>

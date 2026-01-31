@@ -4,27 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Involvements | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            bg: '#e1ddc4',
+                            text: '#020204',
+                        },
+                        dark: {
+                            bg: '#1a1a1a',
+                            text: '#e1ddc4',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .theme-light { --bg: #e1ddc4; --text: #020204; --card: #f5f3e8; --header: #020204; --header-text: #e1ddc4; }
+        .theme-dark { --bg: #1a1a1a; --text: #e1ddc4; --card: #2d2d2d; --header: #2d2d2d; --header-text: #e1ddc4; }
+        body { background-color: var(--bg); color: var(--text); }
+        header { background-color: var(--header); color: var(--header-text); }
+        .card-bg { background-color: var(--card); }
+    </style>
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="nav-container">
-                <button class="nav-toggle" id="nav-toggle">
+<body class="theme-light min-h-screen transition-colors duration-300">
+    <header class="py-4 shadow-md sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-4">
+            <div class="nav-container flex justify-between items-center">
+                <button class="nav-toggle text-2xl focus:outline-none" id="nav-toggle">
                     <i class="fas fa-bars"></i>
                 </button>
-                <ul class="nav-menu" id="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="involvements.html">Involvements</a></li>
-                    <li><a href="skill.html">Skills</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contacts.html">Contact</a></li>
+                <ul class="nav-menu hidden md:flex flex-col md:flex-row absolute md:static top-16 left-0 w-full md:w-auto bg-[#020204] md:bg-transparent gap-2 md:gap-8 py-4 md:py-0" id="nav-menu">
+                    <li><a href="index.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">Home</a></li>
+                    <li><a href="projects.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">Projects</a></li>
+                    <li><a href="involvements.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium active">Involvements</a></li>
+                    <li><a href="skill.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">Skills</a></li>
+                    <li><a href="about.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">About</a></li>
+                    <li><a href="contacts.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">Contact</a></li>
                 </ul>
-                <div class="theme-toggle-container">
-                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <div class="theme-toggle-container flex items-center">
+                    <button id="theme-toggle" class="theme-toggle w-10 h-10 border-2 rounded-full flex items-center justify-center transition-all hover:scale-105" aria-label="Toggle theme">
                         <i class="fas fa-moon"></i>
                     </button>
                 </div>
@@ -32,70 +58,70 @@
         </nav>
     </header>
 
-    <main class="collage-container">
-        <div class="involvement-header">
-            <h1> Activities & Involvements </h1>
-            <p>A visual timeline of my key involvements and experiences.</p>
+    <main class="collage-container max-w-6xl mx-auto px-4 py-8 md:py-12">
+        <div class="involvement-header text-center mb-10 fade-in-up">
+            <h1 class="text-3xl md:text-5xl font-bold mb-3 gradient-text">Activities & Involvements</h1>
+            <p class="text-lg md:text-xl opacity-70">A visual timeline of my key involvements and experiences</p>
         </div>
 
-        <div class="collage">
-            <div class="main-photo" style="background-image: url('images/iidex.jpeg')">
-                <div class="collage-caption">
-                    <h3>International Innovation and Design Expo 2025 iIDEX</h3>
-                    <p>Silver Award</p>
-                </div>
-            </div>
-            
-            <div class="small-photo" style="background-image: url('images/microbit.png')">
-                <div class="collage-caption">
-                    <h3>MICRO:BIT SECTION</h3>
-                    <p>Micro:bit workshop with sensors and competition for secondary school students.</p>
-                </div>
-            </div>
-            
-            <div class="small-photo" style="background-image: url('images/sulam.jpeg')">
-                <div class="collage-caption">
-                    <h3>STGEMS X SULAM IOT BOOTCAMP AND CHALLENGE</h3>
-                    <p> Mentored a group of primary school students from SK Keru </p>
+        <div class="collage grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 mb-10 fade-in-up delay-100">
+            <div class="main-photo lg:col-span-2 lg:row-span-2 h-64 md:h-96 lg:h-[500px] bg-cover bg-center rounded-2xl shadow-xl relative overflow-hidden card-lift" style="background-image: url('images/iidex.jpeg')">
+                <div class="collage-caption absolute bottom-5 left-5 right-5 bg-gradient-to-r from-[#020204]/95 to-[#020204]/80 text-[#e1ddc4] p-5 md:p-6 rounded-xl backdrop-blur-sm">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">International Innovation and Design Expo 2025 iIDEX</h3>
+                    <p class="text-base md:text-lg">Silver Award</p>
                 </div>
             </div>
 
-            <div class="small-photo" style="background-image: url('images/hackathon.JPG')">
-                <div class="collage-caption">
-                    <h3>D'FTMK-A-THON</h3>
-                    <p> CODE FOR INNOVATION Hackathon 2025</p>
+            <div class="small-photo h-64 md:h-72 bg-cover bg-center rounded-2xl shadow-xl relative overflow-hidden card-lift" style="background-image: url('images/microbit.png')">
+                <div class="collage-caption absolute bottom-5 left-5 right-5 bg-gradient-to-r from-[#020204]/95 to-[#020204]/80 text-[#e1ddc4] p-4 md:p-5 rounded-xl backdrop-blur-sm">
+                    <h3 class="text-base md:text-lg font-bold mb-1">MICRO:BIT SECTION</h3>
+                    <p class="text-sm md:text-base">Micro:bit workshop with sensors and competition for secondary school students</p>
                 </div>
             </div>
 
-            <div class="small-photo" style="background-image: url('images/csr.jpeg')">
-                <div class="collage-caption">
-                    <h3>TECH EMPOWERMENT FOR COMMUNITY</h3>
-                    <p>CSR Programme with the school students of Felda Palong 2</p>
+            <div class="small-photo h-64 md:h-72 bg-cover bg-center rounded-2xl shadow-xl relative overflow-hidden card-lift" style="background-image: url('images/sulam.jpeg')">
+                <div class="collage-caption absolute bottom-5 left-5 right-5 bg-gradient-to-r from-[#020204]/95 to-[#020204]/80 text-[#e1ddc4] p-4 md:p-5 rounded-xl backdrop-blur-sm">
+                    <h3 class="text-base md:text-lg font-bold mb-1">STGEMS X SULAM IOT BOOTCAMP AND CHALLENGE</h3>
+                    <p class="text-sm md:text-base">Mentored a group of primary school students from SK Keru</p>
+                </div>
+            </div>
+
+            <div class="small-photo h-64 md:h-72 bg-cover bg-center rounded-2xl shadow-xl relative overflow-hidden card-lift" style="background-image: url('images/hackathon.JPG')">
+                <div class="collage-caption absolute bottom-5 left-5 right-5 bg-gradient-to-r from-[#020204]/95 to-[#020204]/80 text-[#e1ddc4] p-4 md:p-5 rounded-xl backdrop-blur-sm">
+                    <h3 class="text-base md:text-lg font-bold mb-1">D'FTMK-A-THON</h3>
+                    <p class="text-sm md:text-base">CODE FOR INNOVATION Hackathon 2025</p>
+                </div>
+            </div>
+
+            <div class="small-photo h-64 md:h-72 bg-cover bg-center rounded-2xl shadow-xl relative overflow-hidden card-lift" style="background-image: url('images/csr.jpeg')">
+                <div class="collage-caption absolute bottom-5 left-5 right-5 bg-gradient-to-r from-[#020204]/95 to-[#020204]/80 text-[#e1ddc4] p-4 md:p-5 rounded-xl backdrop-blur-sm">
+                    <h3 class="text-base md:text-lg font-bold mb-1">TECH EMPOWERMENT FOR COMMUNITY</h3>
+                    <p class="text-sm md:text-base">CSR Programme with the school students of Felda Palong 2</p>
                 </div>
             </div>
         </div>
 
-        <div class="collage-description">
-            <h2>Persatuan Mahasiswa/i, Anak Negeri Sembilan (PERMANIS)</h2>
-            <h3>Bureau of Welfare and Counseling</h3>
-            <ul>
-                <li>Provided emotional and welfare support to members by organizing counseling sessions, peer support initiatives, and mental health awareness programs.</li>
-                <li>Assisted students in resolving personal and academic challenges, while promoting a caring and inclusive environment within the association.</li>
+        <div class="collage-description p-6 md:p-8 rounded-2xl glass-card card-lift mb-8 fade-in-up delay-200">
+            <h2 class="text-2xl md:text-3xl font-bold mb-2">Persatuan Mahasiswa/i, Anak Negeri Sembilan (PERMANIS)</h2>
+            <h3 class="text-xl font-medium mb-4 opacity-80">Bureau of Welfare and Counseling</h3>
+            <ul class="list-disc list-inside space-y-3 text-base md:text-lg opacity-80">
+                <li>Provided emotional and welfare support to members by organizing counseling sessions, peer support initiatives, and mental health awareness programs</li>
+                <li>Assisted students in resolving personal and academic challenges, while promoting a caring and inclusive environment within the association</li>
             </ul>
         </div>
 
-        <div class="collage-description">
-            <h2>Software Engineering Club (SE Club)</h2>
-            <h3>Vice President</h3>
-            <ul>
-                <li>Assisted the President in leading club operations, including planning and executing technical workshops, coding competitions, and industry networking sessions.</li>
-                <li>Oversaw committee activities, delegated tasks, and ensured alignment with the club’s mission to enhance members’ skills in software development and engineering practices.</li>
+        <div class="collage-description p-6 md:p-8 rounded-2xl glass-card card-lift fade-in-up delay-300">
+            <h2 class="text-2xl md:text-3xl font-bold mb-2">Software Engineering Club (SE Club)</h2>
+            <h3 class="text-xl font-medium mb-4 opacity-80">Vice President</h3>
+            <ul class="list-disc list-inside space-y-3 text-base md:text-lg opacity-80">
+                <li>Assisted the President in leading club operations, including planning and executing technical workshops, coding competitions, and industry networking sessions</li>
+                <li>Oversaw committee activities, delegated tasks, and ensured alignment with the club's mission to enhance members' skills in software development and engineering practices</li>
             </ul>
         </div>
     </main>
 
-    <footer>
-        <p>© 2025 Amirul Faris Roslan. All rights reserved.</p>
+    <footer class="text-center py-8 mt-12">
+        <p class="opacity-80">© 2025 Amirul Faris Roslan. All rights reserved.</p>
     </footer>
     <script src="js/theme.js"></script>
     <script src="js/mobile-nav.js"></script>

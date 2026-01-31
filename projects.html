@@ -4,27 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Projects | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            bg: '#e1ddc4',
+                            text: '#020204',
+                        },
+                        dark: {
+                            bg: '#1a1a1a',
+                            text: '#e1ddc4',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .theme-light { --bg: #e1ddc4; --text: #020204; --card: #f5f3e8; --header: #020204; --header-text: #e1ddc4; }
+        .theme-dark { --bg: #1a1a1a; --text: #e1ddc4; --card: #2d2d2d; --header: #2d2d2d; --header-text: #e1ddc4; }
+        body { background-color: var(--bg); color: var(--text); }
+        header { background-color: var(--header); color: var(--header-text); }
+        .card-bg { background-color: var(--card); }
+    </style>
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="nav-container">
-                <button class="nav-toggle" id="nav-toggle">
+<body class="theme-light min-h-screen transition-colors duration-300">
+    <header class="py-4 shadow-md sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-4">
+            <div class="nav-container flex justify-between items-center">
+                <button class="nav-toggle text-2xl focus:outline-none" id="nav-toggle">
                     <i class="fas fa-bars"></i>
                 </button>
-                <ul class="nav-menu" id="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="involvements.html">Involvements</a></li>
-                    <li><a href="skill.html">Skills</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contacts.html">Contact</a></li>
+                <ul class="nav-menu hidden md:flex flex-col md:flex-row absolute md:static top-16 left-0 w-full md:w-auto bg-[#020204] md:bg-transparent gap-2 md:gap-8 py-4 md:py-0" id="nav-menu">
+                    <li><a href="index.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">Home</a></li>
+                    <li><a href="projects.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium active">Projects</a></li>
+                    <li><a href="involvements.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">Involvements</a></li>
+                    <li><a href="skill.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">Skills</a></li>
+                    <li><a href="about.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">About</a></li>
+                    <li><a href="contacts.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">Contact</a></li>
                 </ul>
-                <div class="theme-toggle-container">
-                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <div class="theme-toggle-container flex items-center">
+                    <button id="theme-toggle" class="theme-toggle w-10 h-10 border-2 rounded-full flex items-center justify-center transition-all hover:scale-105" aria-label="Toggle theme">
                         <i class="fas fa-moon"></i>
                     </button>
                 </div>
@@ -32,125 +58,125 @@
         </nav>
     </header>
 
-    <main>
-        <div class="involvement-header">
-            <h1>My Projects</h1>
-            <p>A mix of fun and practical projects where I explored coding and building user-friendly interfaces.</p>
+    <main class="max-w-6xl mx-auto px-4 py-8 md:py-12">
+        <div class="involvement-header text-center mb-10 fade-in-up">
+            <h1 class="text-3xl md:text-5xl font-bold mb-3 gradient-text">My Projects</h1>
+            <p class="text-lg md:text-xl opacity-70">A mix of fun and practical projects where I explored coding and building user-friendly interfaces</p>
         </div>
-        <div class="projects-container">
-            <!-- Project 1 -->
-            <div class="project-card">
+
+        <div class="projects-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-8 fade-in-up delay-100">
+            <div class="project-card card-lift rounded-2xl overflow-hidden shadow-lg glass-card">
                 <div class="project-image">
                     <a href="images/website.png">
-                        <img src="images/website.png" alt="Website Health Monitoring Screenshot">
+                        <img src="images/website.png" alt="Website Health Monitoring Screenshot" class="w-full h-52 object-cover">
                     </a>
                 </div>
-                <div class="project-content">
-                    <h3>Real-Time Website Health Monitoring System</h3>
-                    <p>The Real-Time Website Health Monitoring System is a full-stack JavaScript platform with WebSocket and Azure PostgreSQL, enabling users to monitor multiple URLs, track live status, and analyze performance trends through interactive graphs for improved reliability and insights.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/mirulritory/SitePulse">Github</a>
-                        <a href="#">Demo Video</a>
+                <div class="project-content p-6">
+                    <h3 class="text-xl md:text-2xl font-bold mb-3">Real-Time Website Health Monitoring System</h3>
+                    <p class="text-base md:text-lg mb-5 leading-relaxed opacity-80">The Real-Time Website Health Monitoring System is a full-stack JavaScript platform with WebSocket and Azure PostgreSQL, enabling users to monitor multiple URLs, track live status, and analyze performance trends through interactive graphs for improved reliability and insights.</p>
+                    <div class="project-links flex gap-4">
+                        <a href="https://github.com/mirulritory/SitePulse" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Github</a>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Demo Video</a>
                     </div>
                 </div>
             </div>
-            
-            <div class="project-card">
+
+            <div class="project-card card-lift rounded-2xl overflow-hidden shadow-lg glass-card">
                 <div class="project-image">
                     <a href="images/website.png">
-                        <img src="images/helplink.png" alt="Website Health Monitoring Screenshot">
+                        <img src="images/helplink.png" alt="Website Health Monitoring Screenshot" class="w-full h-52 object-cover">
                     </a>
                 </div>
-                <div class="project-content">
-                    <h3>HelpLink – A disaster response and relief mobile application</h3>
-                    <p>HelpLink is a disaster response mobile app featuring real-time reporting, shelter navigation, Google Sign-In, PayPal integration, and an AI Chat Assistant, leveraging AWS backend services to enhance safety, support, donations, and aid coordination during emergencies.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/mirulritory/Workshop-2.git">Github</a>
-                        <a href="https://youtu.be/P3IYRnJ4HSw?si=AR7YekPzDM6s5YB4">Demo Video</a>
+                <div class="project-content p-6">
+                    <h3 class="text-xl md:text-2xl font-bold mb-3">HelpLink – A disaster response and relief mobile application</h3>
+                    <p class="text-base md:text-lg mb-5 leading-relaxed opacity-80">HelpLink is a disaster response mobile app featuring real-time reporting, shelter navigation, Google Sign-In, PayPal integration, and an AI Chat Assistant, leveraging AWS backend services to enhance safety, support, donations, and aid coordination during emergencies.</p>
+                    <div class="project-links flex gap-4">
+                        <a href="https://github.com/mirulritory/Workshop-2.git" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Github</a>
+                        <a href="https://youtu.be/P3IYRnJ4HSw?si=AR7YekPzDM6s5YB4" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Demo Video</a>
                     </div>
                 </div>
             </div>
-            
-            <!-- Project 3 -->
-            <div class="project-card">
+
+            <div class="project-card card-lift rounded-2xl overflow-hidden shadow-lg glass-card">
                 <div class="project-image">
                     <a href="images/website.png">
-                        <img src="images/bujang.png" alt="Website Health Monitoring Screenshot">
+                        <img src="images/bujang.png" alt="Website Health Monitoring Screenshot" class="w-full h-52 object-cover">
                     </a>
                 </div>
-                <div class="project-content">
-                    <h3>Bujang Western – Food Ordering System</h3>
-                    <p>A dual-mode food ordering system offering walk-in via table QR and delivery via website, integrated with a kitchen staff module for order tracking, cancellation, and history management, while automatically sending digital receipts to customers through Gmail.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/FarisGhfr/food_ordering_system.git">Github</a>
-                        <a href="https://docs.google.com/document/d/1Uce0Yk9zK_oRKwoQDTWZmWiKwSk0yaZT/edit?usp=sharing&ouid=116657461074606327917&rtpof=true&sd=true">Documentation</a>
+                <div class="project-content p-6">
+                    <h3 class="text-xl md:text-2xl font-bold mb-3">Bujang Western – Food Ordering System</h3>
+                    <p class="text-base md:text-lg mb-5 leading-relaxed opacity-80">A dual-mode food ordering system offering walk-in via table QR and delivery via website, integrated with a kitchen staff module for order tracking, cancellation, and history management, while automatically sending digital receipts to customers through Gmail.</p>
+                    <div class="project-links flex gap-4">
+                        <a href="https://github.com/FarisGhfr/food_ordering_system.git" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Github</a>
+                        <a href="https://docs.google.com/document/d/1Uce0Yk9zK_oRKwoQDTWZmWiKwSk0yaZT/edit?usp=sharing&ouid=116657461074606327917&rtpof=true&sd=true" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Documentation</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="involvement-header">
-            <h1>GIFT Programme</h1>
-            <p>The GIFT programme is a youth empowerment initiative that equips participants with future-ready skills through hands-on projects, industry partnerships, and practical learning to enhance employability and workforce integration.</p>
+
+        <!-- GIFT Programme Section -->
+        <div class="involvement-header text-center mb-10 mt-16 fade-in-up delay-200">
+            <h1 class="text-3xl md:text-5xl font-bold mb-3 gradient-text">GIFT Programme</h1>
+            <p class="text-lg md:text-xl opacity-70">The GIFT programme is a youth empowerment initiative that equips participants with future-ready skills through hands-on projects, industry partnerships, and practical learning to enhance employability and workforce integration</p>
         </div>
-        <div class="projects-container">
-            <!-- Project 1 -->
-            <div class="project-card">
+
+        <div class="projects-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-8">
+            <div class="project-card card-lift rounded-2xl overflow-hidden shadow-lg glass-card">
                 <div class="project-image">
-                    <img src="images/cenergi.jpg" alt="Website Health Monitoring Screenshot">
+                    <img src="images/cenergi.jpg" alt="Cenergi" class="w-full h-52 object-cover">
                 </div>
-                <div class="project-content">
-                    <h3>Scenario 1</h3>
-                    <p>The task requires creating a 1-page memo summarizing key sustainability highlights from Cenergi’s report with actionable insights for marketing use, along with drafting an email to support campaigns promoting the company’s sustainability progress to customers.</p>
+                <div class="project-content p-6">
+                    <h3 class="text-xl md:text-2xl font-bold mb-3">Scenario 1</h3>
+                    <p class="text-base md:text-lg mb-5 leading-relaxed opacity-80">The task requires creating a 1-page memo summarizing key sustainability highlights from Cenergi's report with actionable insights for marketing use, along with drafting an email to support campaigns promoting the company's sustainability progress to customers.</p>
                     <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1XQ0qX3SZ33RGYQd75X961A_LpeeXlU5R?usp=sharing">Documentation</a>
+                        <a href="https://drive.google.com/drive/folders/1XQ0qX3SZ33RGYQd75X961A_LpeeXlU5R?usp=sharing" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Documentation</a>
                     </div>
                 </div>
             </div>
-            
-            <div class="project-card">
+
+            <div class="project-card card-lift rounded-2xl overflow-hidden shadow-lg glass-card">
                 <div class="project-image">
-                    <img src="images/ihh.jpg" alt="Website Health Monitoring Screenshot">
+                    <img src="images/ihh.jpg" alt="IHH Healthcare" class="w-full h-52 object-cover">
                 </div>
-                <div class="project-content">
-                    <h3>Scenario 2</h3>
-                    <p>The task involves preparing a 5–6 page company primer for onboarding new recruits at IHH Healthcare Malaysia, summarizing key points from the latest annual report, and creating an illustrative video highlighting essential details to support understanding.</p>
+                <div class="project-content p-6">
+                    <h3 class="text-xl md:text-2xl font-bold mb-3">Scenario 2</h3>
+                    <p class="text-base md:text-lg mb-5 leading-relaxed opacity-80">The task involves preparing a 5–6 page company primer for onboarding new recruits at IHH Healthcare Malaysia, summarizing key points from the latest annual report, and creating an illustrative video highlighting essential details to support understanding.</p>
                     <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1J1j956ooRS0JflTQyOcwSuyRm46wMOqf?usp=sharing">Documentation</a>
+                        <a href="https://drive.google.com/drive/folders/1J1j956ooRS0JflTQyOcwSuyRm46wMOqf?usp=sharing" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Documentation</a>
                     </div>
                 </div>
             </div>
-            
-            <!-- Project 3 -->
-            <div class="project-card">
+
+            <div class="project-card card-lift rounded-2xl overflow-hidden shadow-lg glass-card">
                 <div class="project-image">
-                    <img src="images/brochure.png" alt="Website Health Monitoring Screenshot">
+                    <img src="images/brochure.png" alt="Maybank" class="w-full h-52 object-cover">
                 </div>
-                <div class="project-content">
-                    <h3>Scenario 3</h3>
-                    <p>As Relationship Manager at Maybank must prepare a customer profile of Suresh, a 30-year-old accountant, create a product brochure, and deliver a mortgage loan recommendation with a persuasive sales pitch for his first home purchase consideration.</p>
+                <div class="project-content p-6">
+                    <h3 class="text-xl md:text-2xl font-bold mb-3">Scenario 3</h3>
+                    <p class="text-base md:text-lg mb-5 leading-relaxed opacity-80">As Relationship Manager at Maybank must prepare a customer profile of Suresh, a 30-year-old accountant, create a product brochure, and deliver a mortgage loan recommendation with a persuasive sales pitch for his first home purchase consideration.</p>
                     <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1EsPZz8NIrLBz9dv_7Ap6YWvq2xl6BBp8?usp=sharing">Documentation</a>
+                        <a href="https://drive.google.com/drive/folders/1EsPZz8NIrLBz9dv_7Ap6YWvq2xl6BBp8?usp=sharing" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Documentation</a>
                     </div>
                 </div>
             </div>
-            <!-- Project 4 -->
-            <div class="project-card">
+
+            <div class="project-card card-lift rounded-2xl overflow-hidden shadow-lg glass-card">
                 <div class="project-image">
-                    <img src="images/grab.png" alt="Grab banner">
+                    <img src="images/grab.png" alt="Grab" class="w-full h-52 object-cover">
                 </div>
-                <div class="project-content">
-                    <h3>Scenario 4</h3>
-                    <p>Data Analyst team in Grab’s e-hailing must analyze two years’ sales data, report regional performance, identify bright and hot spots, recommend growth opportunities with business actions, and deliver a graded performance report, worksheet, and presentation to the Head of Department.</p>
+                <div class="project-content p-6">
+                    <h3 class="text-xl md:text-2xl font-bold mb-3">Scenario 4</h3>
+                    <p class="text-base md:text-lg mb-5 leading-relaxed opacity-80">Data Analyst team in Grab's e-hailing must analyze two years' sales data, report regional performance, identify bright and hot spots, recommend growth opportunities with business actions, and deliver a graded performance report, worksheet, and presentation to the Head of Department.</p>
                     <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1YaRf8BWrjpu2vGv4BDFJ3F7ztz92xm6q?usp=sharing">Documentation</a>
+                        <a href="https://drive.google.com/drive/folders/1YaRf8BWrjpu2vGv4BDFJ3F7ztz92xm6q?usp=sharing" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Documentation</a>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer>
-        <p>© 2025 Amirul Faris Roslan. All rights reserved.</p>
+    <footer class="text-center py-8 mt-12">
+        <p class="opacity-80">© 2025 Amirul Faris Roslan. All rights reserved.</p>
     </footer>
     <script src="js/theme.js"></script>
     <script src="js/mobile-nav.js"></script>
