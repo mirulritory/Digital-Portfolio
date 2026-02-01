@@ -21,6 +21,28 @@
     --modal-overlay: rgba(0, 0, 0, 0.8);
 }
 
+[data-theme="dark"] body {
+    background: linear-gradient(135deg, #1a1a1a, #252525, #1f1f1f, #2a2a2a);
+    background-size: 400% 400%;
+}
+
+[data-theme="dark"] .project-card-new {
+    box-shadow: 0 4px 12px rgba(200, 190, 180, 0.1);
+}
+
+[data-theme="dark"] .project-card-new:hover {
+    box-shadow: 0 20px 40px rgba(200, 190, 180, 0.2);
+}
+
+[data-theme="dark"] .involvement-card-new {
+    box-shadow: 0 4px 12px rgba(200, 190, 180, 0.1);
+}
+
+[data-theme="dark"] .hero-info-box {
+    background: linear-gradient(145deg, var(--card-bg), rgba(60, 60, 60, 0.3));
+    box-shadow: 0 8px 24px rgba(200, 190, 180, 0.1);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -34,9 +56,11 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: var(--bg-color);
+    background: linear-gradient(135deg, #dcd6c9, #e8e0d5, #d4cbbf, #e0d8cc);
+    background-size: 400% 400%;
+    animation: subtleGradientShift 18s ease infinite;
     color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: color 0.3s ease;
     min-width: 1200px;
     overflow-x: auto;
 }
@@ -118,7 +142,7 @@ section {
 /* Section Watermark - Large Light Gray Uppercase */
 .section-watermark-involvements {
     position: absolute;
-    top: -13%;
+    top: -20%;
     left: 50%;
     transform: translateX(-50%);
     font-size: 12.5rem;
@@ -160,13 +184,14 @@ section {
     height: 500px;
     object-fit: cover;
     animation: slideInLeft 1s ease-out forwards;
+    border-radius: 8px;
 }
 
 .hero-info-box {
-    background: var(--card-bg);
+    background: linear-gradient(145deg, var(--card-bg), rgba(212, 203, 191, 0.3));
     padding: 2.5rem 3rem;
     border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 24px rgba(139, 119, 101, 0.15);
     max-width: 800px;
     height: 300px;
     border: 1px solid rgba(0, 0, 0, 0.05);
@@ -224,9 +249,22 @@ section {
     }
 }
 
+@keyframes subtleGradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 .hero-info-box .subtitle {
-    font-size: 1rem;
-    font-style: italic;
+    font-size: 1.2rem;
+    font-family: 'Jersey 10', sans-serif;
+    font-style: normal;
     color: var(--hover-color);
     margin: 0 0 1.5rem 0;
 }
@@ -306,7 +344,7 @@ section {
     background: transparent;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(139, 119, 101, 0.15);
     transition: all 0.3s ease;
     cursor: pointer;
     opacity: 0;
@@ -321,7 +359,7 @@ section {
 
 .project-card-new:hover {
     transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 20px 40px rgba(139, 119, 101, 0.3);
 }
 
 .project-card-new:hover .project-card-image img {
@@ -404,6 +442,8 @@ section {
     perspective: 1000px;
     opacity: 0;
     transform: translateY(30px);
+    box-shadow: 0 4px 12px rgba(139, 119, 101, 0.15);
+    transition: all 0.3s ease;
 }
 
 .involvement-card-new.visible {
@@ -496,9 +536,30 @@ section {
 }
 
 /* See More Button */
-.see-more-btn {
+.see-more-btn-project {
     position: absolute;
-    bottom: 2.5rem;
+    bottom: -4rem;
+    right: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--card-bg);
+    color: var(--text-color);
+    border: none;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.see-more-btn-involvements{
+    position: absolute;
+    bottom: 1.5rem;
     right: 5rem;
     display: flex;
     align-items: center;
@@ -517,7 +578,13 @@ section {
     z-index: 10;
 }
 
-.see-more-btn:hover {
+.see-more-btn-project:hover {
+    background: var(--hover-color);
+    color: var(--card-bg);
+    transform: translateX(-5px);
+}
+
+.see-more-btn-involvements:hover {
     background: var(--hover-color);
     color: var(--card-bg);
     transform: translateX(-5px);

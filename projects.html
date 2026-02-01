@@ -16,181 +16,640 @@
         document.write('<base href="' + base + '">');
       })();
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            bg: '#e1ddc4',
-                            text: '#020204',
-                        },
-                        dark: {
-                            bg: '#1a1a1a',
-                            text: '#e1ddc4',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .theme-light { --bg: #e1ddc4; --text: #020204; --card: #f5f3e8; --header: #020204; --header-text: #e1ddc4; }
-        .theme-dark { --bg: #1a1a1a; --text: #e1ddc4; --card: #2d2d2d; --header: #2d2d2d; --header-text: #e1ddc4; }
-        body { background-color: var(--bg); color: var(--text); }
-        header { background-color: var(--header); color: var(--header-text); }
-        .card-bg { background-color: var(--card); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #DBD6C3;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Hide scrollbar */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        html {
+            scrollbar-width: none;
+        }
+
+        /* Main wrapper - pins the section */
+        .parallax-wrapper {
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* Horizontal track - spans 200vw */
+        .horizontal-track {
+            display: flex;
+            width: 200vw;
+            height: 100vh;
+        }
+
+        /* Sections */
+        .section {
+            width: 100vw;
+            height: 100vh;
+            padding: 4rem 1rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Section header - parallax background */
+        .section-header {
+            position: absolute;
+            padding: 0.5rem 3rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 6rem;
+            color: black;
+            z-index: -1;
+            opacity: 0.15;
+            text-transform: uppercase;
+        }
+
+        .my-projects-header {
+            top: 8%;
+            left: 5%;
+        }
+        .gift-header {
+            top: 5%;
+            right: 5%;
+        }
+
+        /* Card grid */
+        .cards-grid {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Section subtitle */
+        .section-subtitle-project {
+            position: absolute;
+            right: 10%;
+            width: 80%;
+            font-weight: 100;
+            font-size: 1.0rem;
+            color: black;
+            z-index: -1;
+            opacity: 0.2;
+            text-transform: lowercase;
+        }
+
+        .section-subtitle-gift {
+            position: absolute;
+            right: 100%;
+            left: 50%;
+            width: 70%;
+            font-weight: 100;
+            font-size: 1.0rem;
+            color: black;
+            z-index: -1;
+            opacity: 0.2;
+            text-transform: lowercase;
+        }
+
+        /* Card Core Style - Retro Brutalist */
+        .card {
+            position: absolute !important;
+            background: #E6E2D3;
+            border: 2px solid black;
+            border-radius: 15px;
+            box-shadow: 10px 10px 0px 0px black;
+            padding: 1.2rem;
+            display: flex;
+            gap: 1rem;
+            width: 600px !important;
+            max-width: 600px !important;
+            min-width: 280px !important;
+            flex-shrink: 0 !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translate(-5px, -5px);
+            box-shadow: 15px 15px 0px 0px black;
+            z-index: 100;
+        }
+
+        /* Thumbnail box */
+        .thumbnail-box {
+            background: white;
+            border: 2px solid black;
+            border-radius: 10px;
+            width: 100px;
+            height: 100px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .thumbnail-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Card content */
+        .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .card-title {
+            font-weight: 900;
+            font-size: 0.85rem;
+            margin: 0;
+            line-height: 1.2;
+            color: black;
+        }
+
+        .card-description {
+            font-size: 0.7rem;
+            line-height: 1.3;
+            color: #333;
+            margin: 0;
+            flex: 1;
+        }
+
+        .card-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .card-link {
+            font-weight: 700;
+            font-size: 0.7rem;
+            color: black;
+            text-decoration: none;
+            padding: 0.4rem 0.8rem;
+            background: white;
+            border: 2px solid black;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .card-link:hover {
+            background: black;
+            color: white;
+        }
+
+        /* Random rotation variations */
+        .card:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .card:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        /* Back button - same design as see-more button */
+        .back-button {
+            position: fixed;
+            top: 1rem;
+            left: 2rem;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: #E6E2D3;
+            color: black;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #4a4a4a;
+            color: #E6E2D3;
+            transform: translateX(-5px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .section-header {
+                font-size: 3rem;
+            }
+
+            .card {
+                position: relative;
+                max-width: 100%;
+                min-width: auto;
+                flex-direction: column !important;
+                margin-top: 1rem !important;
+                left: auto !important;
+                top: auto !important;
+                rotation: 0 !important;
+            }
+
+            .thumbnail-box {
+                width: 100%;
+                height: 150px;
+            }
+
+            .section {
+                padding: 2rem;
+            }
+
+            .cards-grid {
+                position: relative;
+            }
+        }
     </style>
 </head>
-<body class="theme-light min-h-screen transition-colors duration-300">
-    <header class="py-4 shadow-md sticky top-0 z-50">
-        <nav class="max-w-6xl mx-auto px-4">
-            <div class="nav-container flex justify-between items-center">
-                <button class="nav-toggle text-2xl focus:outline-none" id="nav-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <ul class="nav-menu hidden md:flex flex-col md:flex-row absolute md:static top-16 left-0 w-full md:w-auto bg-[#020204] md:bg-transparent gap-2 md:gap-8 py-4 md:py-0" id="nav-menu">
-                    <li><a href="index.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">Home</a></li>
-                    <li><a href="projects.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium active">Projects</a></li>
-                    <li><a href="involvements.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">Involvements</a></li>
-                    <li><a href="skill.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">Skills</a></li>
-                    <li><a href="about.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">About</a></li>
-                    <li><a href="contacts.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">Contact</a></li>
-                </ul>
-                <div class="theme-toggle-container flex items-center">
-                    <button id="theme-toggle" class="theme-toggle w-10 h-10 border-2 rounded-full flex items-center justify-center transition-all hover:scale-105" aria-label="Toggle theme">
-                        <i class="fas fa-moon"></i>
-                    </button>
+<body>
+    <a href="index.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        <span>back</span>
+    </a>
+
+    <div class="parallax-wrapper">
+        <div class="horizontal-track">
+            <!-- My Projects Section -->
+            <div class="section">
+                <h2 class="section-header my-projects-header">My Projects</h2>
+                <div class="cards-grid">
+                    <!-- Subtitle text -->
+                    <div class="section-subtitle-project">A mix of fun and practical projects where I explored coding and building user-friendly interfaces.</div>
+
+                    <!-- Project 1 -->
+                    <div class="card project-card">
+                        <div class="thumbnail-box">
+                            <img src="images/sitepulse.png" alt="SitePulse">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Real-Time Website Health Monitoring System</h3>
+                            <p class="card-description">Full-stack JavaScript platform with WebSocket and Azure PostgreSQL for monitoring multiple URLs, tracking live status, and analyzing performance trends.</p>
+                            <div class="card-links">
+                                <a href="https://github.com/mirulritory/SitePulse" class="card-link" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                    GitHub
+                                </a>
+                                <a href="https://youtu.be/XFMPcapIQA0?si=IWUi0KMzmW5Ji9WE" class="card-link" target="_blank">
+                                    <i class="fas fa-play"></i>
+                                    Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="card project-card">
+                        <div class="thumbnail-box">
+                            <img src="images/helplink.png" alt="HelpLink">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">HelpLink – Disaster Response Mobile App</h3>
+                            <p class="card-description">Mobile app featuring real-time reporting, shelter navigation, Google Sign-In, PayPal integration, and AI Chat Assistant leveraging AWS backend services.</p>
+                            <div class="card-links">
+                                <a href="https://github.com/mirulritory/Workshop-2.git" class="card-link" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                    GitHub
+                                </a>
+                                <a href="https://youtu.be/P3IYRnJ4HSw?si=AR7YekPzDM6s5YB4" class="card-link" target="_blank">
+                                    <i class="fas fa-play"></i>
+                                    Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="card project-card">
+                        <div class="thumbnail-box">
+                            <img src="images/bujang.png" alt="Bujang Western">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Bujang Western – Food Ordering System</h3>
+                            <p class="card-description">Dual-mode food ordering system with table QR for walk-in customers, delivery via website, and kitchen staff module for order tracking.</p>
+                            <div class="card-links">
+                                <a href="https://github.com/FarisGhfr/food_ordering_system.git" class="card-link" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                    GitHub
+                                </a>
+                                <a href="https://docs.google.com/document/d/1Uce0Yk9zK_oRKwoQDTWZmWiKwSk0yaZT/edit?usp=sharing&ouid=116657461074606327917&rtpof=true&sd=true" class="card-link" target="_blank">
+                                    <i class="fas fa-file-alt"></i>
+                                    Docs
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 4 -->
+                    <div class="card project-card">
+                        <div class="thumbnail-box">
+                            <img src="images/optima.png" alt="Optima Bank">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Optima Bank – Voucher System</h3>
+                            <p class="card-description">Simple voucher e‑commerce system built with PHP, MySQL, and Composer libraries (Google OAuth, Cloudinary, Guzzle, Dotenv).</p>
+                            <div class="card-links">
+                                <a href="https://github.com/khaliszz/VoucherSystem" class="card-link" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                    GitHub
+                                </a>
+                                <a href="https://drive.google.com/drive/folders/1eOmjxpNdjAcOvyJ3ptg-kCrB3jOkNaKY?usp=drive_link" class="card-link" target="_blank">
+                                    <i class="fas fa-file-alt"></i>
+                                    Docs
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
-    </header>
 
-    <main class="max-w-6xl mx-auto px-4 py-8 md:py-12">
-        <div class="involvement-header text-center mb-10 fade-in-up">
-            <h1 class="text-3xl md:text-5xl font-bold mb-3 gradient-text">My Projects</h1>
-            <p class="text-lg md:text-xl opacity-70">A mix of fun and practical projects where I explored coding and building user-friendly interfaces</p>
+            <!-- GIFT Programme Section -->
+            <div class="section">
+                <h2 class="section-header gift-header">GIFT Programme</h2>
+                <div class="cards-grid">
+                    <!-- Subtitle text -->
+                    <div class="section-subtitle-gift">The GIFT programme is a youth empowerment initiative that equips participants with future-ready skills through hands-on projects, industry partnerships, and practical learning to enhance employability and workforce integration.</div>
+
+                    <!-- GIFT 1 -->
+                    <div class="card gift-card">
+                        <div class="thumbnail-box">
+                            <img src="images/cenergi.jpg" alt="Cenergi">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Scenario 1 - Cenergi Sustainability</h3>
+                            <p class="card-description">Created a 1-page memo summarizing key sustainability highlights from Cenergi's report with actionable insights for marketing campaigns.</p>
+                            <div class="card-links">
+                                <a href="https://drive.google.com/drive/folders/1XQ0qX3SZ33RGYQd75X961A_LpeeXlU5R?usp=sharing" class="card-link" target="_blank">
+                                    <i class="fas fa-folder"></i>
+                                    Docs
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GIFT 2 -->
+                    <div class="card gift-card">
+                        <div class="thumbnail-box">
+                            <img src="images/ihh.jpg" alt="IHH Healthcare">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Scenario 2 - IHH Healthcare Onboarding</h3>
+                            <p class="card-description">Prepared a 5–6 page company primer for onboarding new recruits at IHH Healthcare Malaysia, summarizing key points from the annual report.</p>
+                            <div class="card-links">
+                                <a href="https://drive.google.com/drive/folders/1J1j956ooRS0JflTQyOcwSuyRm46wMOqf?usp=sharing" class="card-link" target="_blank">
+                                    <i class="fas fa-folder"></i>
+                                    Docs
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GIFT 3 -->
+                    <div class="card gift-card">
+                        <div class="thumbnail-box">
+                            <img src="images/brochure.png" alt="Maybank">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Scenario 3 - Maybank Mortgage Pitch</h3>
+                            <p class="card-description">Created a customer profile, product brochure, and persuasive sales pitch for Suresh's first home purchase at Maybank.</p>
+                            <div class="card-links">
+                                <a href="https://drive.google.com/drive/folders/1EsPZz8NIrLBz9dv_7Ap6YWvq2xl6BBp8?usp=sharing" class="card-link" target="_blank">
+                                    <i class="fas fa-folder"></i>
+                                    Docs
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GIFT 4 -->
+                    <div class="card gift-card">
+                        <div class="thumbnail-box">
+                            <img src="images/grab.png" alt="Grab">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Scenario 4 - Grab Sales Analysis</h3>
+                            <p class="card-description">Analyzed two years' e-hailing sales data, reported regional performance, identified bright and hot spots, and recommended growth opportunities.</p>
+                            <div class="card-links">
+                                <a href="https://drive.google.com/drive/folders/1YaRf8BWrjpu2vGv4BDFJ3F7ztz92xm6q?usp=sharing" class="card-link" target="_blank">
+                                    <i class="fas fa-folder"></i>
+                                    Docs
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <div class="projects-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-8 fade-in-up delay-100">
-            <div class="project-card card-lift rounded-2xl overflow-hidden shadow-lg glass-card">
-                <div class="project-image">
-                    <a href="images/website.png">
-                        <img src="images/website.png" alt="Website Health Monitoring Screenshot" class="w-full h-52 object-cover">
-                    </a>
-                </div>
-                <div class="project-content p-6">
-                    <h3 class="text-xl md:text-2xl font-bold mb-3">Real-Time Website Health Monitoring System</h3>
-                    <p class="text-base md:text-lg mb-5 leading-relaxed opacity-80">The Real-Time Website Health Monitoring System is a full-stack JavaScript platform with WebSocket and Azure PostgreSQL, enabling users to monitor multiple URLs, track live status, and analyze performance trends through interactive graphs for improved reliability and insights.</p>
-                    <div class="project-links flex gap-4">
-                        <a href="https://github.com/mirulritory/SitePulse" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Github</a>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Demo Video</a>
-                    </div>
-                </div>
-            </div>
+    <script>
+        // Register ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
 
-            <div class="project-card card-lift rounded-2xl overflow-hidden shadow-lg glass-card">
-                <div class="project-image">
-                    <a href="images/website.png">
-                        <img src="images/helplink.png" alt="Website Health Monitoring Screenshot" class="w-full h-52 object-cover">
-                    </a>
-                </div>
-                <div class="project-content p-6">
-                    <h3 class="text-xl md:text-2xl font-bold mb-3">HelpLink – A disaster response and relief mobile application</h3>
-                    <p class="text-base md:text-lg mb-5 leading-relaxed opacity-80">HelpLink is a disaster response mobile app featuring real-time reporting, shelter navigation, Google Sign-In, PayPal integration, and an AI Chat Assistant, leveraging AWS backend services to enhance safety, support, donations, and aid coordination during emergencies.</p>
-                    <div class="project-links flex gap-4">
-                        <a href="https://github.com/mirulritory/Workshop-2.git" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Github</a>
-                        <a href="https://youtu.be/P3IYRnJ4HSw?si=AR7YekPzDM6s5YB4" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Demo Video</a>
-                    </div>
-                </div>
-            </div>
+        // Horizontal parallax scrolling
+        const track = document.querySelector('.horizontal-track');
+        const wrapper = document.querySelector('.parallax-wrapper');
 
-            <div class="project-card card-lift rounded-2xl overflow-hidden shadow-lg glass-card">
-                <div class="project-image">
-                    <a href="images/website.png">
-                        <img src="images/bujang.png" alt="Website Health Monitoring Screenshot" class="w-full h-52 object-cover">
-                    </a>
-                </div>
-                <div class="project-content p-6">
-                    <h3 class="text-xl md:text-2xl font-bold mb-3">Bujang Western – Food Ordering System</h3>
-                    <p class="text-base md:text-lg mb-5 leading-relaxed opacity-80">A dual-mode food ordering system offering walk-in via table QR and delivery via website, integrated with a kitchen staff module for order tracking, cancellation, and history management, while automatically sending digital receipts to customers through Gmail.</p>
-                    <div class="project-links flex gap-4">
-                        <a href="https://github.com/FarisGhfr/food_ordering_system.git" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Github</a>
-                        <a href="https://docs.google.com/document/d/1Uce0Yk9zK_oRKwoQDTWZmWiKwSk0yaZT/edit?usp=sharing&ouid=116657461074606327917&rtpof=true&sd=true" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Documentation</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        // Pin the wrapper and animate horizontal scroll
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: wrapper,
+                start: 'top top',
+                end: '+=300%', // Scroll 300% of viewport height
+                scrub: 1, // Smooth scrubbing
+                pin: true, // Pin the section
+                anticipatePin: 1,
+                invalidateOnRefresh: true
+            }
+        });
 
-        <!-- GIFT Programme Section -->
-        <div class="involvement-header text-center mb-10 mt-16 fade-in-up delay-200">
-            <h1 class="text-3xl md:text-5xl font-bold mb-3 gradient-text">GIFT Programme</h1>
-            <p class="text-lg md:text-xl opacity-70">The GIFT programme is a youth empowerment initiative that equips participants with future-ready skills through hands-on projects, industry partnerships, and practical learning to enhance employability and workforce integration</p>
-        </div>
+        // Animate horizontal movement
+        tl.to(track, {
+            x: '-50%', // Move left 50% (scroll through 200vw track)
+            ease: 'none'
+        });
 
-        <div class="projects-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-8">
-            <div class="project-card card-lift rounded-2xl overflow-hidden shadow-lg glass-card">
-                <div class="project-image">
-                    <img src="images/cenergi.jpg" alt="Cenergi" class="w-full h-52 object-cover">
-                </div>
-                <div class="project-content p-6">
-                    <h3 class="text-xl md:text-2xl font-bold mb-3">Scenario 1</h3>
-                    <p class="text-base md:text-lg mb-5 leading-relaxed opacity-80">The task requires creating a 1-page memo summarizing key sustainability highlights from Cenergi's report with actionable insights for marketing use, along with drafting an email to support campaigns promoting the company's sustainability progress to customers.</p>
-                    <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1XQ0qX3SZ33RGYQd75X961A_LpeeXlU5R?usp=sharing" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Documentation</a>
-                    </div>
-                </div>
-            </div>
+        // Parallax effect for section headers (move slower)
+        gsap.to('.section-header', {
+            xPercent: -50,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: wrapper,
+                start: 'top top',
+                end: '+=300%',
+                scrub: 1
+            }
+        });
 
-            <div class="project-card card-lift rounded-2xl overflow-hidden shadow-lg glass-card">
-                <div class="project-image">
-                    <img src="images/ihh.jpg" alt="IHH Healthcare" class="w-full h-52 object-cover">
-                </div>
-                <div class="project-content p-6">
-                    <h3 class="text-xl md:text-2xl font-bold mb-3">Scenario 2</h3>
-                    <p class="text-base md:text-lg mb-5 leading-relaxed opacity-80">The task involves preparing a 5–6 page company primer for onboarding new recruits at IHH Healthcare Malaysia, summarizing key points from the latest annual report, and creating an illustrative video highlighting essential details to support understanding.</p>
-                    <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1J1j956ooRS0JflTQyOcwSuyRm46wMOqf?usp=sharing" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Documentation</a>
-                    </div>
-                </div>
-            </div>
+        // Staggered card animation with parallax depth
+        const projectCards = document.querySelectorAll('.project-card');
+        const giftCards = document.querySelectorAll('.gift-card');
 
-            <div class="project-card card-lift rounded-2xl overflow-hidden shadow-lg glass-card">
-                <div class="project-image">
-                    <img src="images/brochure.png" alt="Maybank" class="w-full h-52 object-cover">
-                </div>
-                <div class="project-content p-6">
-                    <h3 class="text-xl md:text-2xl font-bold mb-3">Scenario 3</h3>
-                    <p class="text-base md:text-lg mb-5 leading-relaxed opacity-80">As Relationship Manager at Maybank must prepare a customer profile of Suresh, a 30-year-old accountant, create a product brochure, and deliver a mortgage loan recommendation with a persuasive sales pitch for his first home purchase consideration.</p>
-                    <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1EsPZz8NIrLBz9dv_7Ap6YWvq2xl6BBp8?usp=sharing" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Documentation</a>
-                    </div>
-                </div>
-            </div>
+        // Note: Card positioning tweens are created in positionCardsRandomly function
+        // No separate xPercent tweens here to avoid conflicts
 
-            <div class="project-card card-lift rounded-2xl overflow-hidden shadow-lg glass-card">
-                <div class="project-image">
-                    <img src="images/grab.png" alt="Grab" class="w-full h-52 object-cover">
-                </div>
-                <div class="project-content p-6">
-                    <h3 class="text-xl md:text-2xl font-bold mb-3">Scenario 4</h3>
-                    <p class="text-base md:text-lg mb-5 leading-relaxed opacity-80">Data Analyst team in Grab's e-hailing must analyze two years' sales data, report regional performance, identify bright and hot spots, recommend growth opportunities with business actions, and deliver a graded performance report, worksheet, and presentation to the Head of Department.</p>
-                    <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1YaRf8BWrjpu2vGv4BDFJ3F7ztz92xm6q?usp=sharing" class="text-blue-600 hover:text-blue-800 font-medium text-base md:text-lg transition-all hover:underline">Documentation</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+        // Hide scroll indicator after scrolling starts
+        ScrollTrigger.create({
+            trigger: wrapper,
+            start: 'top top-=10',
+            onEnter: () => {
+                gsap.to('.scroll-indicator', {
+                    opacity: 0,
+                    duration: 0.5
+                });
+            },
+            onLeaveBack: () => {
+                gsap.to('.scroll-indicator', {
+                    opacity: 1,
+                    duration: 0.5
+                });
+            }
+        });
 
-    <footer class="text-center py-8 mt-12">
-        <p class="opacity-80">© 2025 Amirul Faris Roslan. All rights reserved.</p>
-    </footer>
-    <script src="js/theme.js"></script>
-    <script src="js/mobile-nav.js"></script>
+// Randomly position cards in each section with better distribution
+        // Global rotation index to ensure all 8 cards have different angles
+        let globalRotationIndex = 0;
+
+        function positionCardsRandomly(sectionSelector) {
+            const section = document.querySelector(sectionSelector);
+            const cards = section.querySelectorAll('.card');
+            const subtitle = section.querySelector('.section-subtitle-project,.section-subtitle-gift');
+            const sectionWidth = section.offsetWidth;
+            const sectionHeight = section.offsetHeight;
+
+            console.log(`Positioning cards in ${sectionSelector}:`, {
+                sectionWidth,
+                sectionHeight,
+                cardCount: cards.length
+            });
+
+            // Kill any existing tweens on cards and subtitle
+            cards.forEach(card => {
+                gsap.killTweensOf(card);
+            });
+            if (subtitle) {
+                gsap.killTweensOf(subtitle);
+            }
+
+            // Use a 2x2 grid pattern for 4 cards
+            const cols = 2;
+            const rows = 2;
+            const cardWidth = 340;
+            const cardHeight = 200; // Approximate card height
+            const gapX = 300;
+            const gapY = 100;
+            
+            // Apply top padding only for My Projects section (nth-child(1))
+            const isMyProjectsSection = sectionSelector.includes('nth-child(1)');
+            const topPadding = isMyProjectsSection ? 50 : 0;
+
+            // 8 different fixed rotation angles for all 8 cards
+            const fixedRotations = [-2, 2, -1, -3, 1, -2, 3, 8];
+
+            // Calculate grid starting position
+            const gridWidth = (cardWidth * cols) + (gapX * (cols - 1));
+            const gridHeight = (cardHeight * rows) + (gapY * (rows - 1));
+            const startX = (sectionWidth - gridWidth) / 2 - 150;
+            const startY = (sectionHeight - gridHeight) / 2;
+
+            cards.forEach((card, index) => {
+                const row = Math.floor(index / cols);
+                const col = index % cols;
+
+                // Calculate grid position with some random variation
+                const baseX = startX + (col * (cardWidth + gapX));
+                const baseY = startY + (row * (cardHeight + gapY));
+
+                // Add extra top padding for top row cards
+                const rowOffsetY = row === 0 ? topPadding : 0;
+
+                // Add small random variation for organic feel
+                const randomOffsetX = Math.random() * 20 - 10; // -10 to 10
+                const randomOffsetY = Math.random() * 20 - 10; // -10 to 10
+
+                const finalX = baseX + randomOffsetX;
+                const finalY = baseY + rowOffsetY + randomOffsetY;
+
+                // Use fixed rotation from predefined angles
+                const fixedRotation = fixedRotations[globalRotationIndex % fixedRotations.length];
+                globalRotationIndex++;
+
+                console.log(`Card ${index}:`, {
+                    grid: `row ${row}, col ${col}`,
+                    baseX,
+                    baseY,
+                    finalX,
+                    finalY,
+                    rotation: fixedRotation
+                });
+
+                gsap.set(card, {
+                    position: 'absolute',
+                    x: finalX,
+                    y: finalY,
+                    rotation: fixedRotation,
+                    overwrite: true
+                });
+            });
+
+            // Position subtitle in the exact center between the 4 cards
+            if (subtitle) {
+                let centerX, centerY;
+
+                // Different positioning for each section
+                if (sectionSelector.includes('nth-child(1)')) {
+                    // My Projects section subtitle positioning
+                    centerX = startX + cardWidth + (gapX / 2) + 250;
+                    centerY = startY + cardHeight + (gapY / 2) - 20 + (topPadding / 2);
+                } else if (sectionSelector.includes('nth-child(2)')) {
+                    // GIFT Programme section subtitle positioning
+                    centerX = startX + cardWidth + (gapX / 2) + 200;
+                    centerY = startY + cardHeight + (gapY / 2) - 20;
+                }
+
+                gsap.set(subtitle, {
+                    position: 'absolute',
+                    left: centerX,
+                    top: centerY,
+                    transform: 'translate(-50%, -50%)',
+                    overwrite: true
+                });
+            }
+        }
+
+        // Position cards in both sections after page is fully loaded
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                positionCardsRandomly('.section:nth-child(1)');
+                positionCardsRandomly('.section:nth-child(2)');
+            }, 200);
+        });
+    </script>
 </body>
 </html>
