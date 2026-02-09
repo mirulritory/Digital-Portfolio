@@ -4,138 +4,373 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Involvements | Portfolio</title>
-    <script>
-      (function(){
-        var base = './';
-        if (window.location.protocol === 'https:' || window.location.protocol === 'http:') {
-          var path = window.location.pathname.replace(/\/$/, '');
-          var segments = path.split('/').filter(Boolean);
-          if (segments.length > 0) { base = '/' + segments[0] + '/'; }
-          else { base = '/'; }
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        document.write('<base href="' + base + '">');
-      })();
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            bg: '#e1ddc4',
-                            text: '#020204',
-                        },
-                        dark: {
-                            bg: '#1a1a1a',
-                            text: '#e1ddc4',
-                        }
-                    }
-                }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #DBD6C3;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Hide scrollbar */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        html {
+            scrollbar-width: none;
+        }
+
+        /* Back button */
+        .back-button {
+            position: fixed;
+            top: 1rem;
+            left: 2rem;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: #E6E2D3;
+            color: black;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #4a4a4a;
+            color: #E6E2D3;
+            transform: translateX(-5px);
+        }
+
+        /* Main container */
+        .involvements-container {
+            display: flex;
+            min-height: 100vh;
+            padding-top: 5rem;
+        }
+
+        /* Sticky vertical title sidebar */
+        .sticky-title {
+            position: sticky;
+            top: 50%;
+            transform: translateY(-50%) rotate(180deg);
+            height: 70vh;
+            width: 80px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 3rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            z-index: 10;
+        }
+
+        /* Masonry grid layout - flex container for rows */
+        .masonry-grid {
+            flex: 1;
+            padding: 2rem 3rem 4rem 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* Row wrapper */
+        .row-wrapper {
+            display: grid;
+            grid-auto-rows: 200px;
+            gap: 1.5rem;
+        }
+
+        /* Row pattern: small on right */
+        .row-small-right {
+            grid-template-columns: 2fr 2fr 0.5fr;
+        }
+
+        /* Row pattern: small on left */
+        .row-small-left {
+            grid-template-columns: 0.5fr 2fr 2fr;
+        }
+
+        /* Brick/Card styles */
+        .brick {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .brick:hover {
+            transform: translate(-3px, -3px);
+        }
+
+        /* Accessory column - same hover effects as regular bricks */
+        .brick.accessory {
+            background-color: #023e0d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Half height rows */
+        .brick.half-height {
+            grid-row: span 1;
+        }
+
+        /* Overlay */
+        .brick-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: #023e0d;
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+            transition: opacity 0.4s ease;
+        }
+
+        .brick:hover .brick-overlay {
+            opacity: 80%;
+        }
+
+        /* Text styling */
+        .brick-title {
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .brick-description {
+            color: #ffffff;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            max-width: 100%;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .brick-year {
+            color: #ffffff;
+            font-size: 0.8rem;
+            margin-top: 0.75rem;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        /* Accessory number styling */
+        .accessory-number {
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 3rem;
+            opacity: 0.3;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .involvements-container {
+                flex-direction: column;
+                padding-top: 4rem;
+            }
+
+            .sticky-title {
+                position: relative;
+                top: auto;
+                transform: none;
+                height: auto;
+                width: 100%;
+                writing-mode: horizontal-tb;
+                text-orientation: mixed;
+                padding: 1.5rem;
+                border-radius: 0 0 15px 15px;
+                font-size: 3rem;
+            }
+
+            .masonry-grid {
+                padding: 1.5rem;
+                grid-template-columns: 1fr;
+                grid-auto-rows: 180px;
+            }
+
+            .brick.accessory {
+                display: none;
+            }
+
+            .brick-overlay {
+                opacity: 1;
+                background-color: rgba(2, 62, 13, 0.85);
+            }
+
+            .back-button {
+                top: 0.5rem;
+                left: 1rem;
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
             }
         }
-    </script>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .theme-light { --bg: #e1ddc4; --text: #020204; --card: #f5f3e8; --header: #020204; --header-text: #e1ddc4; }
-        .theme-dark { --bg: #1a1a1a; --text: #e1ddc4; --card: #2d2d2d; --header: #2d2d2d; --header-text: #e1ddc4; }
-        body { background-color: var(--bg); color: var(--text); }
-        header { background-color: var(--header); color: var(--header-text); }
-        .card-bg { background-color: var(--card); }
     </style>
 </head>
-<body class="theme-light min-h-screen transition-colors duration-300">
-    <header class="py-4 shadow-md sticky top-0 z-50">
-        <nav class="max-w-6xl mx-auto px-4">
-            <div class="nav-container flex justify-between items-center">
-                <button class="nav-toggle text-2xl focus:outline-none" id="nav-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <ul class="nav-menu hidden md:flex flex-col md:flex-row absolute md:static top-16 left-0 w-full md:w-auto bg-[#020204] md:bg-transparent gap-2 md:gap-8 py-4 md:py-0" id="nav-menu">
-                    <li><a href="index.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">Home</a></li>
-                    <li><a href="projects.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">Projects</a></li>
-                    <li><a href="involvements.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium active">Involvements</a></li>
-                    <li><a href="skill.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">Skills</a></li>
-                    <li><a href="about.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">About</a></li>
-                    <li><a href="contacts.html" class="block py-2 px-4 md:px-0 hover:opacity-80 transition-opacity font-medium">Contact</a></li>
-                </ul>
-                <div class="theme-toggle-container flex items-center">
-                    <button id="theme-toggle" class="theme-toggle w-10 h-10 border-2 rounded-full flex items-center justify-center transition-all hover:scale-105" aria-label="Toggle theme">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                </div>
-            </div>
-        </nav>
-    </header>
+<body>
+    <a href="index.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        <span>back</span>
+    </a>
 
-    <main class="collage-container max-w-6xl mx-auto px-4 py-8 md:py-12">
-        <div class="involvement-header text-center mb-10 fade-in-up">
-            <h1 class="text-3xl md:text-5xl font-bold mb-3 gradient-text">Activities & Involvements</h1>
-            <p class="text-lg md:text-xl opacity-70">A visual timeline of my key involvements and experiences</p>
+    <div class="involvements-container">
+        <!-- Sticky vertical title -->
+        <div class="sticky-title">
+            INVOLVEMENTS
         </div>
 
-        <div class="collage grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 mb-10 fade-in-up delay-100">
-            <div class="main-photo lg:col-span-2 lg:row-span-2 h-64 md:h-96 lg:h-[500px] bg-cover bg-center rounded-2xl shadow-xl relative overflow-hidden card-lift" style="background-image: url('images/iidex.jpeg')">
-                <div class="collage-caption absolute bottom-5 left-5 right-5 bg-gradient-to-r from-[#020204]/95 to-[#020204]/80 text-[#e1ddc4] p-5 md:p-6 rounded-xl backdrop-blur-sm">
-                    <h3 class="text-lg md:text-xl font-bold mb-2">International Innovation and Design Expo 2025 iIDEX</h3>
-                    <p class="text-base md:text-lg">Silver Award</p>
+        <!-- Masonry grid -->
+        <div class="masonry-grid">
+            <!-- Row 1: normal - normal - small (small on right) -->
+            <div class="row-wrapper row-small-right">
+                <div class="brick" style="background-image: url('images/iidex.jpeg')">
+                    <div class="brick-overlay">
+                        <h3 class="brick-title">iIDEX 2025</h3>
+                        <p class="brick-description">International Innovation and Design Expo - Silver Award</p>
+                        <p class="brick-year">2025</p>
+                    </div>
+                </div>
+                <div class="brick" style="background-image: url('images/microbit.png')">
+                    <div class="brick-overlay">
+                        <h3 class="brick-title">MICRO:BIT SECTION</h3>
+                        <p class="brick-description">Workshop with sensors and competition for secondary school students</p>
+                        <p class="brick-year">2024</p>
+                    </div>
+                </div>
+                <div class="brick accessory">
+                    <div class="brick-overlay">
+                        <span class="accessory-number"></span>
+                    </div>
                 </div>
             </div>
 
-            <div class="small-photo h-64 md:h-72 bg-cover bg-center rounded-2xl shadow-xl relative overflow-hidden card-lift" style="background-image: url('images/microbit.png')">
-                <div class="collage-caption absolute bottom-5 left-5 right-5 bg-gradient-to-r from-[#020204]/95 to-[#020204]/80 text-[#e1ddc4] p-4 md:p-5 rounded-xl backdrop-blur-sm">
-                    <h3 class="text-base md:text-lg font-bold mb-1">MICRO:BIT SECTION</h3>
-                    <p class="text-sm md:text-base">Micro:bit workshop with sensors and competition for secondary school students</p>
+            <!-- Row 2: small - normal - normal (small on left) -->
+            <div class="row-wrapper row-small-left">
+                <div class="brick accessory">
+                    <div class="brick-overlay">
+                        <span class="accessory-number"></span>
+                    </div>
+                </div>
+                <div class="brick" style="background-image: url('images/sulam.jpeg')">
+                    <div class="brick-overlay">
+                        <h3 class="brick-title">SULAM IOT BOOTCAMP</h3>
+                        <p class="brick-description">Mentored primary school students from SK Keru in IoT projects</p>
+                        <p class="brick-year">2024</p>
+                    </div>
+                </div>
+                <div class="brick" style="background-image: url('images/hackathon.JPG')">
+                    <div class="brick-overlay">
+                        <h3 class="brick-title">D'FTMK-A-THON</h3>
+                        <p class="brick-description">CODE FOR INNOVATION Hackathon 2025 participant</p>
+                        <p class="brick-year">2025</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="small-photo h-64 md:h-72 bg-cover bg-center rounded-2xl shadow-xl relative overflow-hidden card-lift" style="background-image: url('images/sulam.jpeg')">
-                <div class="collage-caption absolute bottom-5 left-5 right-5 bg-gradient-to-r from-[#020204]/95 to-[#020204]/80 text-[#e1ddc4] p-4 md:p-5 rounded-xl backdrop-blur-sm">
-                    <h3 class="text-base md:text-lg font-bold mb-1">STGEMS X SULAM IOT BOOTCAMP AND CHALLENGE</h3>
-                    <p class="text-sm md:text-base">Mentored a group of primary school students from SK Keru</p>
+            <!-- Row 3: normal - normal - small (small on right) -->
+            <div class="row-wrapper row-small-right">
+                <div class="brick" style="background-image: url('images/csr.jpeg')">
+                    <div class="brick-overlay">
+                        <h3 class="brick-title">TECH EMPOWERMENT</h3>
+                        <p class="brick-description">CSR Programme with school students of Felda Palong 2</p>
+                        <p class="brick-year">2024</p>
+                    </div>
+                </div>
+                <div class="brick" style="background-image: url('images/winstem.jpg')">
+                    <div class="brick-overlay">
+                        <h3 class="brick-title">PERMANIS</h3>
+                        <p class="brick-description">Bureau of Welfare and Counseling - Student support</p>
+                        <p class="brick-year">2023-2025</p>
+                    </div>
+                </div>
+                <div class="brick accessory">
+                    <div class="brick-overlay">
+                        <span class="accessory-number"></span>
+                    </div>
                 </div>
             </div>
 
-            <div class="small-photo h-64 md:h-72 bg-cover bg-center rounded-2xl shadow-xl relative overflow-hidden card-lift" style="background-image: url('images/hackathon.JPG')">
-                <div class="collage-caption absolute bottom-5 left-5 right-5 bg-gradient-to-r from-[#020204]/95 to-[#020204]/80 text-[#e1ddc4] p-4 md:p-5 rounded-xl backdrop-blur-sm">
-                    <h3 class="text-base md:text-lg font-bold mb-1">D'FTMK-A-THON</h3>
-                    <p class="text-sm md:text-base">CODE FOR INNOVATION Hackathon 2025</p>
+            <!-- Row 4: small - normal - normal (50% height, small on left) -->
+            <div class="row-wrapper row-small-left">
+                <div class="brick accessory">
+                    <div class="brick-overlay">
+                        <span class="accessory-number"></span>
+                    </div>
                 </div>
-            </div>
-
-            <div class="small-photo h-64 md:h-72 bg-cover bg-center rounded-2xl shadow-xl relative overflow-hidden card-lift" style="background-image: url('images/csr.jpeg')">
-                <div class="collage-caption absolute bottom-5 left-5 right-5 bg-gradient-to-r from-[#020204]/95 to-[#020204]/80 text-[#e1ddc4] p-4 md:p-5 rounded-xl backdrop-blur-sm">
-                    <h3 class="text-base md:text-lg font-bold mb-1">TECH EMPOWERMENT FOR COMMUNITY</h3>
-                    <p class="text-sm md:text-base">CSR Programme with the school students of Felda Palong 2</p>
+                <div class="brick half-height" style="background-image: url('images/website.png')">
+                    <div class="brick-overlay">
+                        <h3 class="brick-title">SE Club</h3>
+                        <p class="brick-description">Vice President - Led technical workshops and networking sessions</p>
+                        <p class="brick-year">2024-2025</p>
+                    </div>
+                </div>
+                <div class="brick half-height" style="background-image: url('images/winstem.jpg')">
+                    <div class="brick-overlay">
+                        <h3 class="brick-title">WINSTEM</h3>
+                        <p class="brick-description">Women in STEM initiative - Empowering women in tech</p>
+                        <p class="brick-year">2024</p>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="collage-description p-6 md:p-8 rounded-2xl glass-card card-lift mb-8 fade-in-up delay-200">
-            <h2 class="text-2xl md:text-3xl font-bold mb-2">Persatuan Mahasiswa/i, Anak Negeri Sembilan (PERMANIS)</h2>
-            <h3 class="text-xl font-medium mb-4 opacity-80">Bureau of Welfare and Counseling</h3>
-            <ul class="list-disc list-inside space-y-3 text-base md:text-lg opacity-80">
-                <li>Provided emotional and welfare support to members by organizing counseling sessions, peer support initiatives, and mental health awareness programs</li>
-                <li>Assisted students in resolving personal and academic challenges, while promoting a caring and inclusive environment within the association</li>
-            </ul>
-        </div>
+    <script>
+        // Register ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
 
-        <div class="collage-description p-6 md:p-8 rounded-2xl glass-card card-lift fade-in-up delay-300">
-            <h2 class="text-2xl md:text-3xl font-bold mb-2">Software Engineering Club (SE Club)</h2>
-            <h3 class="text-xl font-medium mb-4 opacity-80">Vice President</h3>
-            <ul class="list-disc list-inside space-y-3 text-base md:text-lg opacity-80">
-                <li>Assisted the President in leading club operations, including planning and executing technical workshops, coding competitions, and industry networking sessions</li>
-                <li>Oversaw committee activities, delegated tasks, and ensured alignment with the club's mission to enhance members' skills in software development and engineering practices</li>
-            </ul>
-        </div>
-    </main>
-
-    <footer class="text-center py-8 mt-12">
-        <p class="opacity-80">© 2025 Amirul Faris Roslan. All rights reserved.</p>
-    </footer>
-    <script src="js/theme.js"></script>
-    <script src="js/mobile-nav.js"></script>
+        // Animate bricks on scroll
+        gsap.utils.toArray('.brick').forEach((brick, index) => {
+            gsap.from(brick, {
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                delay: index * 0.1,
+                scrollTrigger: {
+                    trigger: brick,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+    </script>
 </body>
 </html>
