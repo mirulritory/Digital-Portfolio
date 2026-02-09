@@ -102,30 +102,35 @@
             z-index: 1;
         }
 
-        /* Section subtitle */
-        .section-subtitle-project {
+        /* Section subtitle - above cards so text is visible */
+        .section-subtitle-project,
+        .section-subtitle-gift {
             position: absolute;
-            right: 10%;
             width: 80%;
+            max-width: 520px;
             font-weight: 100;
             font-size: 1.0rem;
             color: black;
-            z-index: -1;
-            opacity: 0.2;
+            z-index: 10;
+            opacity: 0;
             text-transform: lowercase;
+            pointer-events: none;
+            text-align: justify;
+        }
+
+        .section-subtitle-project {
+            right: 10%;
+            white-space: nowrap;
         }
 
         .section-subtitle-gift {
-            position: absolute;
-            right: 100%;
             left: 50%;
             width: 70%;
-            font-weight: 100;
-            font-size: 1.0rem;
-            color: black;
-            z-index: -1;
-            opacity: 0.2;
-            text-transform: lowercase;
+            max-width: 700px;
+            -webkit-line-clamp: 3;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         /* Card Core Style - Retro Brutalist */
@@ -144,6 +149,7 @@
             flex-shrink: 0 !important;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            visibility: hidden; /* Hide initially until positioned */
         }
 
         .card:hover {
@@ -300,9 +306,9 @@
             <!-- My Projects Section -->
             <div class="section">
                 <h2 class="section-header my-projects-header">My Projects</h2>
+                <!-- Subtitle text - moved outside cards-grid -->
+                <div class="section-subtitle-project">A mix of fun and practical projects where I explored coding and building user-friendly interfaces.</div>
                 <div class="cards-grid">
-                    <!-- Subtitle text -->
-                    <div class="section-subtitle-project">A mix of fun and practical projects where I explored coding and building user-friendly interfaces.</div>
 
                     <!-- Project 1 -->
                     <div class="card project-card">
@@ -392,9 +398,9 @@
             <!-- GIFT Programme Section -->
             <div class="section">
                 <h2 class="section-header gift-header">GIFT Programme</h2>
+                <!-- Subtitle text - moved outside cards-grid (data attr ensures text is always available for typing) -->
+                <div class="section-subtitle-gift" data-subtitle-text="The GIFT programme is a youth empowerment initiative that equips participants with future-ready skills through hands-on projects, industry partnerships, and practical learning to enhance employability and workforce integration.">The GIFT programme is a youth empowerment initiative that equips participants with future-ready skills through hands-on projects, industry partnerships, and practical learning to enhance employability and workforce integration.</div>
                 <div class="cards-grid">
-                    <!-- Subtitle text -->
-                    <div class="section-subtitle-gift">The GIFT programme is a youth empowerment initiative that equips participants with future-ready skills through hands-on projects, industry partnerships, and practical learning to enhance employability and workforce integration.</div>
 
                     <!-- GIFT 1 -->
                     <div class="card gift-card">
@@ -472,67 +478,6 @@
         // Register ScrollTrigger
         gsap.registerPlugin(ScrollTrigger);
 
-        // Horizontal parallax scrolling
-        const track = document.querySelector('.horizontal-track');
-        const wrapper = document.querySelector('.parallax-wrapper');
-
-        // Pin the wrapper and animate horizontal scroll
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: wrapper,
-                start: 'top top',
-                end: '+=300%', // Scroll 300% of viewport height
-                scrub: 1, // Smooth scrubbing
-                pin: true, // Pin the section
-                anticipatePin: 1,
-                invalidateOnRefresh: true
-            }
-        });
-
-        // Animate horizontal movement
-        tl.to(track, {
-            x: '-50%', // Move left 50% (scroll through 200vw track)
-            ease: 'none'
-        });
-
-        // Parallax effect for section headers (move slower)
-        gsap.to('.section-header', {
-            xPercent: -50,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: wrapper,
-                start: 'top top',
-                end: '+=300%',
-                scrub: 1
-            }
-        });
-
-        // Staggered card animation with parallax depth
-        const projectCards = document.querySelectorAll('.project-card');
-        const giftCards = document.querySelectorAll('.gift-card');
-
-        // Note: Card positioning tweens are created in positionCardsRandomly function
-        // No separate xPercent tweens here to avoid conflicts
-
-        // Hide scroll indicator after scrolling starts
-        ScrollTrigger.create({
-            trigger: wrapper,
-            start: 'top top-=10',
-            onEnter: () => {
-                gsap.to('.scroll-indicator', {
-                    opacity: 0,
-                    duration: 0.5
-                });
-            },
-            onLeaveBack: () => {
-                gsap.to('.scroll-indicator', {
-                    opacity: 1,
-                    duration: 0.5
-                });
-            }
-        });
-
-// Randomly position cards in each section with better distribution
         // Global rotation index to ensure all 8 cards have different angles
         let globalRotationIndex = 0;
 
@@ -548,14 +493,6 @@
                 sectionHeight,
                 cardCount: cards.length
             });
-
-            // Kill any existing tweens on cards and subtitle
-            cards.forEach(card => {
-                gsap.killTweensOf(card);
-            });
-            if (subtitle) {
-                gsap.killTweensOf(subtitle);
-            }
 
             // Use a 2x2 grid pattern for 4 cards
             const cols = 2;
@@ -614,7 +551,8 @@
                     x: finalX,
                     y: finalY,
                     rotation: fixedRotation,
-                    overwrite: true
+                    overwrite: 'auto',
+                    visibility: 'visible'
                 });
             });
 
@@ -625,22 +563,197 @@
                 // Different positioning for each section
                 if (sectionSelector.includes('nth-child(1)')) {
                     // My Projects section subtitle positioning
-                    centerX = startX + cardWidth + (gapX / 2) + 250;
-                    centerY = startY + cardHeight + (gapY / 2) - 20 + (topPadding / 2);
+                    centerX = startX + cardWidth + (gapX / 2) + 50;
+                    centerY = startY + cardHeight + (gapY / 2) + (topPadding / 2) + 35;
+                    subtitle.style.left = centerX + 'px';
+                    subtitle.style.top = centerY + 'px';
+                    subtitle.style.transform = 'translate(-50%, -50%)';
                 } else if (sectionSelector.includes('nth-child(2)')) {
                     // GIFT Programme section subtitle positioning
-                    centerX = startX + cardWidth + (gapX / 2) + 200;
-                    centerY = startY + cardHeight + (gapY / 2) - 20;
+                    centerX = startX + cardWidth + (gapX / 2);
+                    centerY = startY + cardHeight + (gapY / 2) + 40;
+                    subtitle.style.left = centerX + 'px';
+                    subtitle.style.top = centerY + 'px';
+                    subtitle.style.transform = 'translate(-50%, -50%)';
                 }
-
-                gsap.set(subtitle, {
-                    position: 'absolute',
-                    left: centerX,
-                    top: centerY,
-                    transform: 'translate(-50%, -50%)',
-                    overwrite: true
-                });
             }
+        }
+
+        // ================== SCROLL ANIMATIONS ==================
+        
+        function setupScrollAnimations() {
+            // Horizontal parallax scrolling
+            const track = document.querySelector('.horizontal-track');
+            const wrapper = document.querySelector('.parallax-wrapper');
+
+            // Define GIFT subtitle variables and function BEFORE creating timeline
+            const giftSubtitle = document.querySelector('.section-subtitle-gift');
+            const giftSubtitleText = giftSubtitle.getAttribute('data-subtitle-text') || giftSubtitle.textContent;
+            giftSubtitle.style.opacity = '0';
+            
+            let giftTypeIndex = 0;
+            function typeGiftSubtitle() {
+                if (giftTypeIndex < giftSubtitleText.length) {
+                    giftSubtitle.textContent += giftSubtitleText.charAt(giftTypeIndex);
+                    giftTypeIndex++;
+                    setTimeout(typeGiftSubtitle, 30);
+                }
+            }
+
+            // Pin the wrapper and animate horizontal scroll
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: wrapper,
+                    start: 'top top',
+                    end: '+=300%', // Scroll 300% of viewport height
+                    scrub: 1, // Smooth scrubbing
+                    pin: true, // Pin the section
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true
+                }
+            });
+
+            // Animate horizontal movement
+            tl.to(track, {
+                x: '-50%', // Move left 50% (scroll through 200vw track)
+                ease: 'none'
+            }, 0); // Add at time 0
+
+            // Trigger GIFT subtitle typing effect immediately on page load
+            gsap.delayedCall(1, () => {
+                giftSubtitle.textContent = '';
+                giftSubtitle.style.opacity = '0.2';
+                typeGiftSubtitle();
+            });
+
+            // ================== MY PROJECTS SECTION ANIMATIONS ==================
+            
+            // My Projects Title - Fade in with slide left, fade out on scroll
+            const myProjectsHeader = document.querySelector('.my-projects-header');
+            
+            // Hide title initially
+            myProjectsHeader.style.opacity = '0';
+            
+            gsap.to(myProjectsHeader, { 
+                opacity: 0.15, 
+                x: 0, 
+                duration: 1.5, 
+                ease: 'power3.out',
+                delay: 0.3
+            });
+
+            // My Projects Subtitle - Typing effect on load, fade out on scroll
+            const projectSubtitle = document.querySelector('.section-subtitle-project');
+            const projectSubtitleText = projectSubtitle.textContent;
+            
+            // Hide subtitle initially
+            projectSubtitle.style.opacity = '0';
+            
+            // Typing effect for subtitle
+            let typeIndex = 0;
+            function typeSubtitle() {
+                if (typeIndex < projectSubtitleText.length) {
+                    projectSubtitle.textContent += projectSubtitleText.charAt(typeIndex);
+                    typeIndex++;
+                    setTimeout(typeSubtitle, 30);
+                }
+            }
+
+            // Clear text, show subtitle, and trigger typing effect when page loads
+            gsap.delayedCall(0.5, () => {
+                projectSubtitle.textContent = '';
+                projectSubtitle.style.opacity = '0.2';
+                typeSubtitle();
+            });
+
+            // My Projects Cards - Fade in with slide left/right, fade out on scroll
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            projectCards.forEach((card, index) => {
+                const isEven = index % 2 === 0;
+                const offset = isEven ? -150 : 150; // Even cards slide from left, odd from right
+                
+                // Get the current x position set by positionCardsRandomly
+                const currentX = gsap.getProperty(card, 'x');
+                
+                // Set initial state
+                gsap.set(card, { opacity: 0, x: currentX + offset });
+                
+                // Animate to final position
+                gsap.to(card, {
+                    opacity: 1,
+                    x: currentX,
+                    duration: 1,
+                    delay: 0.5 + (index * 0.15),
+                    ease: 'power3.out'
+                });
+            });
+
+            // ================== GIFT PROGRAMME SECTION ANIMATIONS ==================
+            
+            // GIFT Title - Fade in with slide from right, fade out on scroll
+            const giftHeader = document.querySelector('.gift-header');
+            
+            // Hide title initially
+            giftHeader.style.opacity = '0';
+            
+            ScrollTrigger.create({
+                trigger: '.section:nth-child(2)',
+                start: 'top 80%',
+                onEnter: () => {
+                    gsap.to(giftHeader, {
+                        opacity: 0.15,
+                        x: 0,
+                        duration: 1.5,
+                        ease: 'power3.out'
+                    });
+                }
+            });
+
+            // GIFT Cards - Fade in with slide from right, fade out on scroll
+            const giftCards = document.querySelectorAll('.gift-card');
+            
+            giftCards.forEach((card, index) => {
+                // Get the current x position set by positionCardsRandomly
+                const currentX = gsap.getProperty(card, 'x');
+                
+                // Set initial state
+                gsap.set(card, { opacity: 0, x: currentX + 150 });
+                
+                // Animate to final position when section comes into view
+                ScrollTrigger.create({
+                    trigger: '.section:nth-child(2)',
+                    start: 'top 80%',
+                    onEnter: () => {
+                        gsap.to(card, {
+                            opacity: 1,
+                            x: currentX,
+                            duration: 1,
+                            delay: 0.3 + (index * 0.15),
+                            ease: 'power3.out'
+                        });
+                    },
+                    onLeaveBack: () => {
+                        gsap.to(card, {
+                            opacity: 0,
+                            x: currentX + 150,
+                            duration: 0.5
+                        });
+                    }
+                });
+            });
+
+            // Parallax effect for section headers (move slower)
+            gsap.to('.section-header', {
+                xPercent: -50,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: wrapper,
+                    start: 'top top',
+                    end: '+=300%',
+                    scrub: 1
+                }
+            });
         }
 
         // Position cards in both sections after page is fully loaded
@@ -648,6 +761,8 @@
             setTimeout(() => {
                 positionCardsRandomly('.section:nth-child(1)');
                 positionCardsRandomly('.section:nth-child(2)');
+                // Setup scroll animations after cards are positioned
+                setupScrollAnimations();
             }, 200);
         });
     </script>
