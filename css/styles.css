@@ -108,7 +108,7 @@ section {
     font-size: 18rem;
     font-weight: 900;
     font-family: 'Gochi Hand', cursive;
-    color: rgba(150, 150, 150, 0.3);
+    color: rgba(0, 0, 0, 0.3);
     text-transform: uppercase;
     letter-spacing: 0rem;
     pointer-events: none;
@@ -126,7 +126,7 @@ section {
     font-size: 5rem;
     font-weight: 700;
     font-family: 'Gochi Hand', cursive;
-    color: rgba(150, 150, 150, 0.3);
+    color: rgba(0, 0, 0, 0.3);
     text-transform: uppercase;
     letter-spacing: 0.05rem;
     pointer-events: none;
@@ -148,7 +148,7 @@ section {
     font-size: 12.5rem;
     font-weight: 700;
     font-family: 'Gochi Hand', cursive;
-    color: rgba(150, 150, 150, 0.3);
+    color: rgba(0, 0, 0, 0.3);
     text-transform: uppercase;
     letter-spacing: 0rem;
     pointer-events: none;
@@ -559,7 +559,7 @@ section {
 
 .see-more-btn-involvements{
     position: absolute;
-    bottom: 1rem;
+    bottom: 2rem;
     right: 5rem;
     display: flex;
     align-items: center;
