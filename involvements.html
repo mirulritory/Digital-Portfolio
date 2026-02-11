@@ -105,7 +105,7 @@
         /* Row wrapper */
         .row-wrapper {
             display: grid;
-            grid-auto-rows: 200px;
+            grid-auto-rows: 300px;
             gap: 1.5rem;
         }
 
@@ -174,13 +174,25 @@
             line-height: 1.3;
         }
 
+        .brick-description-1 {
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: bold;
+            line-height: 1.4;
+            max-width: 100%;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
         .brick-description {
             color: #ffffff;
             font-size: 0.9rem;
             line-height: 1.4;
             max-width: 100%;
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 4;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -261,18 +273,20 @@
         <div class="masonry-grid">
             <!-- Row 1: normal - normal - small (small on right) -->
             <div class="row-wrapper row-small-right">
+                <div class="brick half-height" style="background-image: url('images/winstem.jpg')">
+                    <div class="brick-overlay">
+                        <h3 class="brick-title">WINSTEM2025</h3>
+                        <p class="brick-description-1">World Innovation in STEM Competition - Gold Award</p>
+                        <p class="brick-description">Competed in the World Innovation in STEM Competition 2025, developing a real-world problem-solving system over 5–6 months and presenting the solution through a poster and demo video.</p>
+                        <p class="brick-year">2024</p>
+                    </div>
+                </div>
                 <div class="brick" style="background-image: url('images/iidex.jpeg')">
                     <div class="brick-overlay">
                         <h3 class="brick-title">iIDEX 2025</h3>
-                        <p class="brick-description">International Innovation and Design Expo - Silver Award</p>
+                        <p class="brick-description-1">International Innovation and Design Expo - Silver Award</p>
+                        <p class="brick-description">Developed and presented an innovative, sustainability-focused solution at iIDEX 2025, sharpening skills in rapid prototyping, problem solving, and competitive project presentation.</p>
                         <p class="brick-year">2025</p>
-                    </div>
-                </div>
-                <div class="brick" style="background-image: url('images/microbit.png')">
-                    <div class="brick-overlay">
-                        <h3 class="brick-title">MICRO:BIT SECTION</h3>
-                        <p class="brick-description">Workshop with sensors and competition for secondary school students</p>
-                        <p class="brick-year">2024</p>
                     </div>
                 </div>
                 <div class="brick accessory">
@@ -292,14 +306,15 @@
                 <div class="brick" style="background-image: url('images/sulam.jpeg')">
                     <div class="brick-overlay">
                         <h3 class="brick-title">SULAM IOT BOOTCAMP</h3>
-                        <p class="brick-description">Mentored primary school students from SK Keru in IoT projects</p>
+                        <p class="brick-description">Mentored female primary school students (SK Keru) in a 5-month SULAM programme, guiding Micro:bit-based invention projects within cross-institution teams, culminating in a student-led exhibition and judge presentation.</p>
                         <p class="brick-year">2024</p>
                     </div>
                 </div>
                 <div class="brick" style="background-image: url('images/hackathon.JPG')">
                     <div class="brick-overlay">
                         <h3 class="brick-title">D'FTMK-A-THON</h3>
-                        <p class="brick-description">CODE FOR INNOVATION Hackathon 2025 participant</p>
+                        <p class="brick-description-1">CODE FOR INNOVATION Hackathon 2025 participant</p>
+                        <p class="brick-description">Participated in a 24-hour faculty hackathon, developing a C++ system themed around Melaka’s cultural heritage.</p>
                         <p class="brick-year">2025</p>
                     </div>
                 </div>
@@ -309,16 +324,17 @@
             <div class="row-wrapper row-small-right">
                 <div class="brick" style="background-image: url('images/csr.jpeg')">
                     <div class="brick-overlay">
-                        <h3 class="brick-title">TECH EMPOWERMENT</h3>
-                        <p class="brick-description">CSR Programme with school students of Felda Palong 2</p>
+                        <h3 class="brick-title">CSR Programme: Tech Empowerment</h3>
+                        <p class="brick-description">Delivered a CSR-based Micro:bit technology outreach at Felda Palong, introducing primary students to microcontroller fundamentals through guided learning, hands-on exploration, and team challenges with incentive-based problem solving.</p>
                         <p class="brick-year">2024</p>
                     </div>
                 </div>
-                <div class="brick" style="background-image: url('images/winstem.jpg')">
+                
+                <div class="brick" style="background-image: url('images/microbit.png')">
                     <div class="brick-overlay">
-                        <h3 class="brick-title">PERMANIS</h3>
-                        <p class="brick-description">Bureau of Welfare and Counseling - Student support</p>
-                        <p class="brick-year">2023-2025</p>
+                        <h3 class="brick-title">MICRO:BIT SECTION</h3>
+                        <p class="brick-description">Conducted an advanced Micro:bit workshop for secondary students, building on existing fundamentals through hands-on challenges completed within time constraints, with certificates awarded upon programme completion.</p>
+                        <p class="brick-year">2024</p>
                     </div>
                 </div>
                 <div class="brick accessory">
@@ -335,18 +351,20 @@
                         <span class="accessory-number"></span>
                     </div>
                 </div>
-                <div class="brick half-height" style="background-image: url('images/website.png')">
+                <div class="brick half-height" style="background-image: url('images/se.jpeg')">
                     <div class="brick-overlay">
                         <h3 class="brick-title">SE Club</h3>
-                        <p class="brick-description">Vice President - Led technical workshops and networking sessions</p>
+                        <p class="brick-description-1">Vice President</p>
+                        <p class="brick-description">Supported club leadership by overseeing committees and delivering technical workshops, coding competitions, and industry networking to strengthen members’ software engineering skills.</p>
                         <p class="brick-year">2024-2025</p>
                     </div>
                 </div>
-                <div class="brick half-height" style="background-image: url('images/winstem.jpg')">
+                <div class="brick" style="background-image: url('images/permanis.jpeg')">
                     <div class="brick-overlay">
-                        <h3 class="brick-title">WINSTEM</h3>
-                        <p class="brick-description">Women in STEM initiative - Empowering women in tech</p>
-                        <p class="brick-year">2024</p>
+                        <h3 class="brick-title">Persatuan Mahasiswa/i, Anak Negeri Sembilan (PERMANIS)</h3>
+                        <p class="brick-description-1">Bureau of Welfare and Counseling</p>
+                        <p class="brick-description">Delivered emotional and welfare support through counseling initiatives, mental health programs, and direct assistance with students’ personal and academic challenges.</p>
+                        <p class="brick-year">2023-2025</p>
                     </div>
                 </div>
             </div>
